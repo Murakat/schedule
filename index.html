@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Расписание уроков — Группа МТО-138 (2026-2027)</title>
+  <title>Расписание и конспекты — Группа МТО-138 (2026-2027)</title>
   
-  <!-- KaTeX CSS (Local + CDN fallback) -->
+  <!-- KaTeX CSS -->
   <link rel="stylesheet" href="vendor/katex.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" onerror="this.onerror=null;">
 
-  <!-- KaTeX & Marked JS (Local + CDN fallback) -->
+  <!-- KaTeX & Marked JS -->
   <script src="vendor/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" onerror="this.onerror=null;"></script>
   <script src="vendor/marked.min.js"></script>
@@ -25,10 +25,11 @@
       --primary-hover: #1d4ed8;
       --primary-light: #eff6ff;
       --border: #e2e8f0;
+      --border-subtle: #cbd5e1;
       --radius: 14px;
       --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
-      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+      --shadow-lg: 0 10px 20px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
     }
 
     * {
@@ -42,16 +43,16 @@
       background-color: var(--bg);
       color: var(--text);
       line-height: 1.5;
-      padding: 24px 16px 60px;
+      padding: 24px 16px 80px;
     }
 
     .container {
-      max-width: 840px;
+      max-width: 1160px;
       margin: 0 auto;
     }
 
     header {
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       text-align: center;
     }
 
@@ -69,7 +70,7 @@
     }
 
     h1 {
-      font-size: 1.8rem;
+      font-size: 1.85rem;
       font-weight: 800;
       color: #1e293b;
       letter-spacing: -0.02em;
@@ -79,6 +80,43 @@
       color: var(--text-muted);
       font-size: 0.95rem;
       margin-top: 4px;
+    }
+
+    /* Main View Navigation Tabs */
+    .mode-nav {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin: 20px 0 26px;
+    }
+
+    .mode-btn {
+      padding: 10px 22px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #ffffff;
+      color: #475569;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: var(--shadow-sm);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .mode-btn:hover {
+      background: var(--primary-light);
+      color: var(--primary);
+      border-color: #bfdbfe;
+    }
+
+    .mode-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.28);
     }
 
     /* Week Switcher */
@@ -93,6 +131,9 @@
       align-items: center;
       justify-content: space-between;
       gap: 12px;
+      max-width: 860px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .week-btn {
@@ -161,6 +202,9 @@
       border-radius: var(--radius);
       margin-bottom: 20px;
       overflow-x: auto;
+      max-width: 860px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .date-tab {
@@ -180,7 +224,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 5px;
+      gap: 6px;
     }
 
     .date-tab:hover {
@@ -209,6 +253,9 @@
       align-items: center;
       margin-bottom: 14px;
       padding: 0 2px;
+      max-width: 860px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .current-day-title {
@@ -232,6 +279,8 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
+      max-width: 860px;
+      margin: 0 auto;
     }
 
     .lesson-card {
@@ -331,7 +380,7 @@
       gap: 6px;
       background: var(--primary);
       color: white;
-      padding: 9px 16px;
+      padding: 9px 18px;
       border-radius: 8px;
       border: none;
       font-size: 0.88rem;
@@ -346,166 +395,324 @@
       background: var(--primary-hover);
     }
 
-    /* Modal */
+    /* ========================================================= */
+    /* BY SUBJECT VIEW (Google Docs Outline + Divided Dates)     */
+    /* ========================================================= */
+    .subjects-view-container {
+      display: none;
+    }
+
+    .subjects-view-container.active {
+      display: block;
+    }
+
+    .subject-filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+
+    .subject-pill {
+      padding: 8px 18px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: #ffffff;
+      color: #475569;
+      font-size: 0.92rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .subject-pill:hover {
+      background: var(--primary-light);
+      color: var(--primary);
+      border-color: #bfdbfe;
+    }
+
+    .subject-pill.active {
+      background: #1e293b;
+      color: #ffffff;
+      border-color: #1e293b;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.2);
+    }
+
+    .subjects-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: 32px;
+      align-items: start;
+    }
+
+    .subjects-content {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    /* Date Divider Ribbon */
+    .date-divider {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 12px 0 6px;
+      scroll-margin-top: 24px;
+    }
+
+    .date-divider-line {
+      flex: 1;
+      height: 2px;
+      background: #e2e8f0;
+    }
+
+    .date-divider-badge {
+      background: #1e293b;
+      color: #ffffff;
+      font-size: 0.9rem;
+      font-weight: 700;
+      padding: 5px 18px;
+      border-radius: 14px;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+    }
+
+    /* Subject Note Card */
+    .subject-note-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      scroll-margin-top: 24px;
+    }
+
+    .subject-note-header {
+      padding: 16px 24px;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .subject-note-header-left h3 {
+      font-size: 1.22rem;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .subject-note-meta {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .subject-note-body {
+      padding: 26px 30px;
+    }
+
+    /* Google Docs Style Outline Sidebar */
+    .docs-outline {
+      position: sticky;
+      top: 24px;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px 20px;
+      box-shadow: var(--shadow-sm);
+      max-height: calc(100vh - 48px);
+      overflow-y: auto;
+    }
+
+    .docs-outline-title {
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .outline-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .outline-item {
+      font-size: 0.86rem;
+      line-height: 1.35;
+    }
+
+    .outline-link {
+      display: block;
+      padding: 5px 8px;
+      border-radius: 6px;
+      color: #475569;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      cursor: pointer;
+    }
+
+    .outline-link:hover {
+      background: var(--primary-light);
+      color: var(--primary);
+    }
+
+    .outline-link.active {
+      background: #dbeafe;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .outline-link.level-date {
+      font-weight: 700;
+      color: #0f172a;
+      padding-top: 8px;
+      font-size: 0.88rem;
+    }
+
+    .outline-link.level-topic {
+      padding-left: 12px;
+      font-weight: 600;
+      color: #1e3a8a;
+      font-size: 0.84rem;
+    }
+
+    .outline-link.level-sub {
+      padding-left: 22px;
+      font-size: 0.8rem;
+      color: #64748b;
+    }
+
+    /* ========================================================= */
+    /* FULLSCREEN MODAL FOR NOTES                                */
+    /* ========================================================= */
     .modal-backdrop {
       position: fixed;
       top: 0;
       left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(15, 23, 42, 0.6);
-      backdrop-filter: blur(4px);
-      display: none;
-      align-items: center;
-      justify-content: center;
+      width: 100vw;
+      height: 100vh;
+      background: #ffffff;
       z-index: 1000;
-      padding: 20px;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
     }
 
     .modal-backdrop.active {
       display: flex;
     }
 
-    .modal-container {
-      background: white;
-      width: 100%;
-      max-width: 860px;
-      max-height: 90vh;
-      border-radius: 16px;
-      display: flex;
-      flex-direction: column;
-      box-shadow: var(--shadow-lg);
-      overflow: hidden;
-      animation: modalFadeIn 0.2s ease-out;
-    }
-
-    @keyframes modalFadeIn {
-      from { opacity: 0; transform: translateY(12px) scale(0.98); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
     .modal-header {
-      padding: 18px 24px;
+      padding: 16px 36px;
       border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: space-between;
       background: #ffffff;
+      flex-shrink: 0;
+      box-shadow: var(--shadow-sm);
     }
 
     .modal-title-group h2 {
-      font-size: 1.25rem;
+      font-size: 1.45rem;
       font-weight: 800;
       color: #0f172a;
     }
 
     .modal-meta {
-      font-size: 0.84rem;
+      font-size: 0.9rem;
       color: var(--text-muted);
-      margin-top: 2px;
+      margin-top: 3px;
     }
 
-    .btn-close {
-      width: 36px;
-      height: 36px;
-      border-radius: 8px;
+    .btn-close-fullscreen {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 20px;
+      border-radius: 10px;
       border: 1px solid var(--border);
       background: #f8fafc;
+      color: #1e293b;
+      font-size: 0.95rem;
+      font-weight: 700;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #64748b;
-      transition: all 0.15s;
+      transition: all 0.15s ease;
     }
 
-    .btn-close:hover {
-      background: #e2e8f0;
-      color: #0f172a;
-    }
-
-    .modal-toolbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 24px;
-      background: #f8fafc;
-      border-bottom: 1px solid var(--border);
-      font-size: 0.84rem;
-    }
-
-    .modal-tabs {
-      display: flex;
-      gap: 4px;
-      background: #e2e8f0;
-      padding: 3px;
-      border-radius: 8px;
-    }
-
-    .modal-tab-btn {
-      padding: 5px 12px;
-      border: none;
-      background: transparent;
-      border-radius: 6px;
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: #64748b;
-      cursor: pointer;
-    }
-
-    .modal-tab-btn.active {
-      background: white;
-      color: #0f172a;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+    .btn-close-fullscreen:hover {
+      background: #fee2e2;
+      border-color: #fca5a5;
+      color: #991b1b;
     }
 
     .modal-body {
-      padding: 24px;
-      overflow-y: auto;
       flex: 1;
+      overflow-y: auto;
+      padding: 40px 24px 80px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .modal-content-container {
+      width: 100%;
+      max-width: 900px;
     }
 
     /* Markdown & Math Content Styles */
     .notes-rendered {
-      font-size: 1rem;
-      line-height: 1.7;
+      font-size: 1.05rem;
+      line-height: 1.75;
       color: #334155;
     }
 
     .notes-rendered h1 {
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       color: #0f172a;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
       border-bottom: 2px solid #e2e8f0;
       padding-bottom: 8px;
+      font-weight: 800;
     }
 
     .notes-rendered h2 {
-      font-size: 1.3rem;
+      font-size: 1.35rem;
       color: #0f172a;
-      margin: 20px 0 10px;
+      margin: 24px 0 12px;
+      font-weight: 700;
     }
 
     .notes-rendered h3 {
-      font-size: 1.15rem;
+      font-size: 1.2rem;
       color: #1e293b;
-      margin: 18px 0 8px;
+      margin: 20px 0 10px;
+      font-weight: 700;
     }
 
     .notes-rendered h4 {
-      font-size: 1.05rem;
+      font-size: 1.08rem;
       color: #334155;
-      margin: 14px 0 6px;
+      margin: 16px 0 8px;
       font-weight: 700;
     }
 
     .notes-rendered p {
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
     .notes-rendered ul, .notes-rendered ol {
-      margin-bottom: 14px;
-      padding-left: 24px;
+      margin-bottom: 16px;
+      padding-left: 26px;
     }
 
     .notes-rendered li {
@@ -515,9 +722,9 @@
     .notes-rendered blockquote {
       border-left: 4px solid var(--primary);
       background: #eff6ff;
-      padding: 12px 16px;
+      padding: 12px 18px;
       border-radius: 0 8px 8px 0;
-      margin: 14px 0;
+      margin: 16px 0;
       color: #1e3a8a;
     }
 
@@ -525,7 +732,7 @@
       border: none;
       height: 1px;
       background: #e2e8f0;
-      margin: 20px 0;
+      margin: 24px 0;
     }
 
     .notes-rendered u {
@@ -540,12 +747,12 @@
     .notes-rendered table {
       width: 100%;
       border-collapse: collapse;
-      margin: 16px 0;
+      margin: 18px 0;
     }
 
     .notes-rendered th, .notes-rendered td {
       border: 1px solid #cbd5e1;
-      padding: 8px 12px;
+      padding: 10px 14px;
       text-align: left;
     }
 
@@ -556,8 +763,8 @@
 
     /* Math Formulas Styling */
     .math-display-container {
-      margin: 16px 0;
-      padding: 12px 16px;
+      margin: 18px 0;
+      padding: 14px 18px;
       background: #f8fafc;
       border-radius: 8px;
       border: 1px solid #e2e8f0;
@@ -566,68 +773,27 @@
     }
 
     .katex {
-      font-size: 1.12em;
+      font-size: 1.15em;
     }
 
     .katex-display {
       margin: 0.4em 0 !important;
     }
 
-    .notes-raw {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-      font-size: 0.88rem;
-      white-space: pre-wrap;
-      word-break: break-word;
-      background: #0f172a;
-      color: #f8fafc;
-      padding: 20px;
-      border-radius: 8px;
-      display: none;
-      line-height: 1.5;
-    }
-
-    .modal-footer {
-      padding: 14px 24px;
-      border-top: 1px solid var(--border);
-      background: #f8fafc;
-      display: flex;
-      justify-content: flex-end;
-      gap: 10px;
-    }
-
-    .btn-secondary {
-      padding: 8px 16px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      background: white;
-      color: #334155;
-      font-size: 0.88rem;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    .btn-secondary:hover {
-      background: #f1f5f9;
-    }
-
-    .toast {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: #0f172a;
-      color: white;
-      padding: 10px 18px;
-      border-radius: 8px;
-      font-size: 0.88rem;
-      box-shadow: var(--shadow-lg);
-      display: none;
-      z-index: 2000;
+    @media (max-width: 960px) {
+      .subjects-layout {
+        grid-template-columns: 1fr;
+      }
+      .docs-outline {
+        position: static;
+        max-height: none;
+        margin-bottom: 24px;
+      }
     }
 
     @media (max-width: 640px) {
-      .date-bar {
-        flex-wrap: nowrap;
-        overflow-x: auto;
+      body {
+        padding: 16px 10px 60px;
       }
       .week-nav-container {
         padding: 10px 12px;
@@ -641,87 +807,107 @@
         width: 100%;
         justify-content: center;
       }
+      .modal-header {
+        padding: 12px 16px;
+      }
+      .modal-body {
+        padding: 24px 14px 60px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
     <header>
-      <div class="group-badge">🎓 Группа МТО-138 • I полугодие 2026-2027</div>
-      <h1>Расписание уроков</h1>
-      <p class="subtitle">Выберите неделю и день для просмотра расписания и записей в тетрадь</p>
+      <div class="group-badge">Группа МТО-138 • I полугодие 2026-2027</div>
+      <h1>Расписание и конспекты</h1>
+      <p class="subtitle">Учебные материалы, расписание и записи уроков</p>
     </header>
 
-    <!-- Week Navigation with 2 Arrows -->
-    <div class="week-nav-container">
-      <button class="week-btn" id="prevWeekBtn" onclick="changeWeek(-1)" title="Предыдущая неделя">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="15 18 9 12 15 6"></polyline>
-        </svg>
+    <!-- Main Navigation Mode Switcher -->
+    <div class="mode-nav">
+      <button class="mode-btn active" id="btnModeSchedule" onclick="switchViewMode('schedule')">
+        Расписание по дням
       </button>
+      <button class="mode-btn" id="btnModeSubjects" onclick="switchViewMode('subjects')">
+        Все конспекты по предметам
+      </button>
+    </div>
 
-      <div class="week-info">
-        <div class="week-title-text" id="weekTitle">
-          <span id="weekName">Неделя 2</span>
-          <span class="week-badge" id="weekBadge">2026</span>
+    <!-- VIEW 1: Daily Schedule -->
+    <div id="viewSchedule">
+      <!-- Week Navigation with 2 Arrows -->
+      <div class="week-nav-container">
+        <button class="week-btn" id="prevWeekBtn" onclick="changeWeek(-1)" title="Предыдущая неделя">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+
+        <div class="week-info">
+          <div class="week-title-text" id="weekTitle">
+            <span id="weekName">Неделя 2</span>
+            <span class="week-badge" id="weekBadge">2026</span>
+          </div>
+          <div class="week-subtitle-text" id="weekDates">7 сен — 11 сен 2026</div>
         </div>
-        <div class="week-subtitle-text" id="weekDates">7 сен — 11 сен 2026</div>
+
+        <button class="week-btn" id="nextWeekBtn" onclick="changeWeek(1)" title="Следующая неделя">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
       </div>
 
-      <button class="week-btn" id="nextWeekBtn" onclick="changeWeek(1)" title="Следующая неделя">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="9 18 15 12 9 6"></polyline>
-        </svg>
-      </button>
+      <!-- Date Tabs for current active week only -->
+      <div class="date-bar" id="dateTabs"></div>
+
+      <div class="day-header">
+        <div class="current-day-title" id="dayTitle">Загрузка...</div>
+        <input type="date" id="dateInput" class="date-picker" value="2026-09-09">
+      </div>
+
+      <div class="lessons-list" id="lessonsList"></div>
     </div>
 
-    <!-- Date Tabs for current active week only -->
-    <div class="date-bar" id="dateTabs"></div>
+    <!-- VIEW 2: By Subject with Google Docs Outline -->
+    <div id="viewSubjects" class="subjects-view-container">
+      <div class="subject-filter-bar" id="subjectFilterBar"></div>
 
-    <div class="day-header">
-      <div class="current-day-title" id="dayTitle">Загрузка...</div>
-      <input type="date" id="dateInput" class="date-picker" value="2026-09-08">
+      <div class="subjects-layout">
+        <!-- Main notes stream with date divider ribbons -->
+        <main class="subjects-content" id="subjectsContent"></main>
+
+        <!-- Right-side Google Docs Style Outline -->
+        <aside class="docs-outline">
+          <div class="docs-outline-title">Оглавление</div>
+          <ul class="outline-list" id="outlineNav"></ul>
+        </aside>
+      </div>
     </div>
-
-    <div class="lessons-list" id="lessonsList"></div>
   </div>
 
-  <!-- Modal for Notes -->
-  <div class="modal-backdrop" id="modalBackdrop" onclick="if(event.target === this) closeModal()">
-    <div class="modal-container">
-      <div class="modal-header">
-        <div class="modal-title-group">
-          <h2 id="modalSubject">Предмет</h2>
-          <div class="modal-meta" id="modalMeta">Дата • Время • Кабинет • Преподаватель</div>
-        </div>
-        <button class="btn-close" onclick="closeModal()" title="Закрыть (Esc)">✕</button>
+  <!-- Fullscreen Modal for Notes -->
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal-header">
+      <div class="modal-title-group">
+        <h2 id="modalSubject">Предмет</h2>
+        <div class="modal-meta" id="modalMeta">Дата • Время • Кабинет • Преподаватель</div>
       </div>
+      <button class="btn-close-fullscreen" onclick="closeModal()" title="Закрыть (Esc)">
+        ✕ Закрыть
+      </button>
+    </div>
 
-      <div class="modal-toolbar">
-        <div style="display:flex; align-items:center; gap:8px;">
-          <span>📝 Только то, что учитель просил записать в тетрадь</span>
-        </div>
-        <div class="modal-tabs">
-          <button class="modal-tab-btn active" id="btnViewRendered" onclick="switchView('rendered')">👁 Читать</button>
-          <button class="modal-tab-btn" id="btnViewRaw" onclick="switchView('raw')">📄 Исходный .md</button>
-        </div>
-      </div>
-
-      <div class="modal-body">
+    <div class="modal-body">
+      <div class="modal-content-container">
         <div class="notes-rendered" id="modalNotesRendered"></div>
-        <pre class="notes-raw" id="modalNotesRaw"></pre>
-      </div>
-
-      <div class="modal-footer">
-        <span id="modalFileLabel" style="margin-right:auto; font-size:0.8rem; color:#64748b; align-self:center;"></span>
-        <button class="btn-secondary" onclick="copyNotes()">📋 Скопировать .md</button>
-        <a class="btn-secondary" id="modalDownloadBtn" download="note.md" style="text-decoration:none; display:inline-flex; align-items:center;">⬇ Скачать .md</a>
-        <button class="btn-notes" onclick="closeModal()">Понятно</button>
+        <div style="text-align: center; margin-top: 48px; padding-top: 24px; border-top: 1px solid #e2e8f0;">
+          <button class="btn-close-fullscreen" onclick="closeModal()">✕ Закрыть конспект</button>
+        </div>
       </div>
     </div>
   </div>
-
-  <div class="toast" id="toast">Конспект (.md) скопирован в буфер!</div>
 
   <script>
     const APP = {
@@ -757,7 +943,7 @@
   "days": [
     {
       "date": "2026-08-31",
-      "date_display": "31 августа 2026 (Понедельник)",
+      "date_display": "31 августа 2026 г. (Понедельник)",
       "short_day": "31 авг",
       "weekday": "Пн",
       "week": 1,
@@ -798,7 +984,7 @@
     },
     {
       "date": "2026-09-01",
-      "date_display": "1 сентября 2026 (Вторник)",
+      "date_display": "1 сентября 2026 г. (Вторник)",
       "short_day": "1 сен",
       "weekday": "Вт",
       "week": 1,
@@ -807,7 +993,7 @@
           "num": 1,
           "time": "08:30 – 10:00",
           "subject": "Торжественная линейка",
-          "room": "",
+          "room": "Актовый зал",
           "teacher": "Начало в 10:00",
           "has_notes": false
         },
@@ -815,7 +1001,7 @@
           "num": 2,
           "time": "10:10 – 11:40",
           "subject": "Классный час",
-          "room": "каб. 203",
+          "room": "каб. 305",
           "teacher": "Коклюгина Н.А.",
           "has_notes": false
         },
@@ -831,7 +1017,7 @@
     },
     {
       "date": "2026-09-02",
-      "date_display": "2 сентября 2026 (Среда)",
+      "date_display": "2 сентября 2026 г. (Среда)",
       "short_day": "2 сен",
       "weekday": "Ср",
       "week": 1,
@@ -872,7 +1058,7 @@
     },
     {
       "date": "2026-09-03",
-      "date_display": "3 сентября 2026 (Четверг)",
+      "date_display": "3 сентября 2026 г. (Четверг)",
       "short_day": "3 сен",
       "weekday": "Чт",
       "week": 1,
@@ -889,7 +1075,7 @@
           "num": 2,
           "time": "10:10 – 11:40",
           "subject": "История",
-          "room": "каб. 207",
+          "room": "каб. 201",
           "teacher": "Попова А.А.",
           "has_notes": false
         },
@@ -897,7 +1083,7 @@
           "num": 3,
           "time": "12:10 – 13:40",
           "subject": "География",
-          "room": "каб. 201",
+          "room": "каб. 307",
           "teacher": "Бахтина С.А.",
           "has_notes": false
         },
@@ -909,8 +1095,8 @@
           "teacher": "Галавова Г.В.",
           "has_notes": true,
           "notes_file": "dist/notes/2026-09-03_Литература.md",
-          "notes_md": "# 📖 Литература | Конспект в тетрадь\n**Дата:** 3 сентября 2026 г. (Четверг)  \n**Преподаватель:** Галавова Г.В. | **Кабинет:** 203 | **Время:** 14:00 – 15:30  \n\n---\n\n### 📌 ТЕМА УРОКА\n> <u>**Русская литература первой половины XIX века. Романтизм: черты и течения.**</u>\n\n---\n\n### 🏛️ Смена литературных направлений (кратко под запись):\n\n1. <u>**Классицизм**</u> — культ <u>разума</u> и долга, строгие правила, закон «трёх единств».\n2. <u>**Сентиментализм**</u> — культ <u>чувств</u>, внимание к внутреннему миру человека.\n3. <u>**Романтизм**</u> — уход от правил, <u>мир грёз</u>, <u>свобода творчества</u>, бунт против обыденности.\n4. <u>**Реализм**</u> — <u>правдивое отражение жизни</u>, типичный герой в типичных обстоятельствах.\n\n---\n\n### 🎭 4 основные черты романтизма (под диктовку):\n\n1. <u>**Свобода творчества**</u> — отказ от канонов и правил классицизма («пиши так, как чувствуешь»).\n2. <u>**Исключительный герой в исключительных обстоятельствах**</u> — <u>одинокий бунтарь</u>, не вписывающийся в общество (странник, изгнанник).\n3. <u>**Интерес к истории и фольклору**</u> — поиск идеала в прошлом, уход от серой обыденности к народным преданиям и песням.\n4. <u>**Личность автора в центре произведения**</u> — субъективность, автор выражает личные переживания, мысли и душевные страдания от первого лица.\n\n---\n\n### ⚖️ Два течения русского романтизма:\n\n1. <u>**Пассивное (медитативное)**</u>:\n   * Представитель: <u>**В. А. Жуковский**</u> (основоположник русского романтизма).\n   * Суть: <u>уход в мечту, религию и философию</u> (баллады «Светлана», «Людмила»).\n\n2. <u>**Активное (гражданское)**</u>:\n   * Представитель: <u>**К. Ф. Рылеев**</u>.\n   * Суть: <u>призыв к борьбе</u>, гражданский подвиг и служение Отечеству (думы).",
-          "topic": "Русская литература первой половины XIX века. Романтизм"
+          "notes_md": "# Литература Конспект в тетрадь\n**Дата:** 3 сентября 2026 г. (Четверг) \n**Преподаватель:** Галавова Г.В. **Кабинет:** 203 **Время:** 14:00 – 15:30 \n\n---\n\n### ТЕМА УРОКА\n> <u>**Русская литература первой половины XIX века. Романтизм: черты и течения.**</u>\n\n---\n\n### Смена литературных направлений (кратко под запись):\n\n1. <u>**Классицизм**</u> — культ <u>разума</u> и долга, строгие правила, закон «трёх единств».\n2. <u>**Сентиментализм**</u> — культ <u>чувств</u>, внимание к внутреннему миру человека.\n3. <u>**Романтизм**</u> — уход от правил, <u>мир грёз</u>, <u>свобода творчества</u>, бунт против обыденности.\n4. <u>**Реализм**</u> — <u>правдивое отражение жизни</u>, типичный герой в типичных обстоятельствах.\n\n---\n\n### 4 основные черты романтизма (под диктовку):\n\n1. <u>**Свобода творчества**</u> — отказ от канонов и правил классицизма («пиши так, как чувствуешь»).\n2. <u>**Исключительный герой в исключительных обстоятельствах**</u> — <u>одинокий бунтарь</u>, не вписывающийся в общество (странник, изгнанник).\n3. <u>**Интерес к истории и фольклору**</u> — поиск идеала в прошлом, уход от серой обыденности к народным преданиям и песням.\n4. <u>**Личность автора в центре произведения**</u> — субъективность, автор выражает личные переживания, мысли и душевные страдания от первого лица.\n\n---\n\n### Два течения русского романтизма:\n\n1. <u>**Пассивное (медитативное)**</u>:\n* Представитель: <u>**В. А. Жуковский**</u> (основоположник русского романтизма).\n* Суть: <u>уход в мечту, религию и философию</u> (баллады «Светлана», «Людмила»).\n\n2. <u>**Активное (гражданское)**</u>:\n* Представитель: <u>**К. Ф. Рылеев**</u>.\n* Суть: <u>призыв к борьбе</u>, гражданский подвиг и служение Отечеству (думы).",
+          "topic": "Русская литература первой половины XIX века. Романтизм: черты и течения."
         },
         {
           "num": 5,
@@ -924,7 +1110,7 @@
     },
     {
       "date": "2026-09-04",
-      "date_display": "4 сентября 2026 (Пятница)",
+      "date_display": "4 сентября 2026 г. (Пятница)",
       "short_day": "4 сен",
       "weekday": "Пт",
       "week": 1,
@@ -933,12 +1119,12 @@
           "num": 1,
           "time": "08:30 – 10:00",
           "subject": "География",
-          "room": "каб. 203",
+          "room": "каб. 307",
           "teacher": "Бахтина С.А.",
           "has_notes": true,
           "notes_file": "dist/notes/2026-09-04_География.md",
-          "notes_md": "# 🌍 География | Конспект в тетрадь\n**Дата:** 4 сентября 2026 г. (Пятница)  \n**Преподаватель:** Бахтина С.А. | **Кабинет:** 203 | **Время:** 08:30 – 10:00  \n\n---\n\n### 📌 ТЕМА УРОКА\n> <u>**Методы экономической географии. Мировое автомобилестроение.**</u>\n\n---\n\n### 🚗 Лидеры по производству и экспорту автомобилей (на 2005 г., в тетрадь):\n\n1. <u>**Япония**</u> — <u>**7,8 млн** шт./год</u> *(мировой лидер-экспортёр)*\n2. <u>**США**</u> — <u>**6,6 млн** шт./год</u>\n3. <u>**Германия**</u> — <u>**4,5 млн** шт./год</u>\n4. <u>**Франция**</u> — <u>**3,0 млн** шт./год</u>\n5. <u>**Республика Корея (Южная)**</u> — <u>**2,2 млн** шт./год</u>\n6. <u>**Испания**</u> — <u>**1,9 млн** шт./год</u>\n7. <u>**Великобритания**</u> — <u>**1,5 млн** шт./год</u>\n8. <u>**Италия**</u> — <u>**1,3 млн** шт./год</u>\n9. <u>**Мексика**</u> — <u>**700 тыс.** шт./год</u>\n\n---\n\n### ✍️ Статистический метод (под диктовку учителя):\n\n> <u>**«Метод статистики и сравнения позволяет определить коэффициент благополучия экономики в определенном государстве.»**</u>\n\n* **Назначение:** анализ развития отраслей, профессиональное распределение и планирование бюджета.\n\n---\n\n### 🗺️ Картографический метод (под запись):\n\n* <u>**Картосхема**</u> — схематическая карта без точной математической основы.\n* <u>**Изолинии**</u> — линии на карте, соединяющие точки с <u>одинаковыми количественными показателями</u>.",
-          "topic": "Методы экономической географии. Автомобилестроение"
+          "notes_md": "# География Конспект в тетрадь\n**Дата:** 4 сентября 2026 г. (Пятница) \n**Преподаватель:** Бахтина С.А. **Кабинет:** 203 **Время:** 08:30 – 10:00 \n\n---\n\n### ТЕМА УРОКА\n> <u>**Методы экономической географии. Мировое автомобилестроение.**</u>\n\n---\n\n### Лидеры по производству и экспорту автомобилей (на 2005 г., в тетрадь):\n\n1. <u>**Япония**</u> — <u>**7,8 млн** шт./год</u> *(мировой лидер-экспортёр)*\n2. <u>**США**</u> — <u>**6,6 млн** шт./год</u>\n3. <u>**Германия**</u> — <u>**4,5 млн** шт./год</u>\n4. <u>**Франция**</u> — <u>**3,0 млн** шт./год</u>\n5. <u>**Республика Корея (Южная)**</u> — <u>**2,2 млн** шт./год</u>\n6. <u>**Испания**</u> — <u>**1,9 млн** шт./год</u>\n7. <u>**Великобритания**</u> — <u>**1,5 млн** шт./год</u>\n8. <u>**Италия**</u> — <u>**1,3 млн** шт./год</u>\n9. <u>**Мексика**</u> — <u>**700 тыс.** шт./год</u>\n\n---\n\n### Статистический метод (под диктовку учителя):\n\n> <u>**«Метод статистики и сравнения позволяет определить коэффициент благополучия экономики в определенном государстве.»**</u>\n\n* **Назначение:** анализ развития отраслей, профессиональное распределение и планирование бюджета.\n\n---\n\n### Картографический метод (под запись):\n\n* <u>**Картосхема**</u> — схематическая карта без точной математической основы.\n* <u>**Изолинии**</u> — линии на карте, соединяющие точки с <u>одинаковыми количественными показателями</u>.",
+          "topic": "Методы экономической географии. Мировое автомобилестроение."
         },
         {
           "num": 2,
@@ -948,8 +1134,8 @@
           "teacher": "Садыкова Р.З.",
           "has_notes": true,
           "notes_file": "dist/notes/2026-09-04_Алгебра.md",
-          "notes_md": "# 📐 Алгебра (Математика) | Конспект в тетрадь\n**Дата:** 4 сентября 2026 г. (Пятница)  \n**Преподаватель:** Садыкова Р.З. | **Кабинет:** 303 | **Время:** 10:10 – 11:40  \n\n---\n\n### 📌 ТЕМА УРОКА\n> <u>**Квадратные уравнения. Теорема Виета. Задачи на движение по реке.**</u>\n\n---\n\n### 🔢 1. Теорема Виета: формулы и правила\n\n#### 1) Для приведенного квадратного уравнения: $x^2 + px + q = 0$\n* Сумма корней: <u>**$x_1 + x_2 = -p$**</u>\n* Произведение корней: <u>**$x_1 \\cdot x_2 = q$**</u>\n\n#### 2) Для общего квадратного уравнения: $ax^2 + bx + c = 0$ (при $a \\ne 0$)\n* Сумма корней: <u>**$x_1 + x_2 = -\\frac{b}{a}$**</u>\n* Произведение корней: <u>**$x_1 \\cdot x_2 = \\frac{c}{a}$**</u>\n\n> ⚠️ **Главное правило знака:**  \n> Коэффициент $b$ в формулу суммы корней всегда подставляется <u>**с противоположным знаком**</u>!  \n> *Пример:* если $b = -14$, то $-b = \\underline{+14}$.\n\n---\n\n### 🚤 2. Текстовая задача на движение по реке\n\n#### 📋 Условие задачи:\n> Моторная лодка, собственная скорость которой равна <u>$15\\text{ км/ч}$</u>, прошла по течению реки <u>$24\\text{ км}$</u> и вернулась обратно.  \n> На обратный путь (против течения) лодка затратила <u>**на 40 минут больше**</u>, чем на путь по течению.  \n> <u>**Найти скорость течения реки.**</u>\n\n---\n\n#### ✏️ Математическая модель:\n\n* Пусть скорость течения реки равна **$x\\text{ км/ч}$**.\n* <u>**ОДЗ:** $0 < x < 15$</u> (скорость течения положительна и меньше собственной скорости лодки).\n\n**Скорости движения:**\n* Скорость по течению: $v_{\\text{по}} = (15 + x)\\text{ км/ч}$\n* Скорость против течения: $v_{\\text{пр}} = (15 - x)\\text{ км/ч}$\n\n**Время движения ($t = \\frac{S}{v}$):**\n* Время по течению: $t_{\\text{по}} = \\dfrac{24}{15 + x}\\text{ ч}$\n* Время против течения: $t_{\\text{пр}} = \\dfrac{24}{15 - x}\\text{ ч}$\n\n**Перевод разницы во времени:**  \n$$40\\text{ мин} = \\frac{40}{60}\\text{ ч} = \\underline{\\mathbf{\\frac{2}{3}\\text{ ч}}}$$\n\n---\n\n#### ⚙️ Составление и решение уравнения:\n\nЗная, что время против течения больше времени по течению на $\\frac{2}{3}\\text{ ч}$, составляем уравнение:\n\n$$\\frac{24}{15 - x} - \\frac{24}{15 + x} = \\frac{2}{3}$$\n\n**Шаг 1. Разделим обе части уравнения на 2:**\n$$\\frac{12}{15 - x} - \\frac{12}{15 + x} = \\frac{1}{3}$$\n\n**Шаг 2. Приводим к общему знаменателю $(15 - x)(15 + x) = 225 - x^2$:**\n$$\\frac{12(15 + x) - 12(15 - x)}{225 - x^2} = \\frac{1}{3}$$\n\nРаскрываем скобки в числителе:\n$$\\frac{180 + 12x - 180 + 12x}{225 - x^2} = \\frac{1}{3}$$\n\n$$\\frac{24x}{225 - x^2} = \\frac{1}{3}$$\n\n**Шаг 3. Умножаем пропорцией (крест-накрест):**\n$$3 \\cdot 24x = 225 - x^2$$\n$$72x = 225 - x^2$$\n$$\\underline{\\mathbf{x^2 + 72x - 225 = 0}}$$\n\n---\n\n#### 🎯 Нахождение корней:\n\n**Способ 1: Через дискриминант**\n$$D = b^2 - 4ac = 72^2 - 4 \\cdot 1 \\cdot (-225) = 5184 + 900 = 6084 = 78^2$$\n$$x_1 = \\frac{-72 + 78}{2} = \\frac{6}{2} = \\underline{\\mathbf{3}}$$\n$$x_2 = \\frac{-72 - 78}{2} = \\frac{-150}{2} = -75 \\quad (\\text{не подходит, так как } x > 0)$$\n\n**Способ 2: По теореме Виета**\n$$\\begin{cases} x_1 + x_2 = -72 \\\\ x_1 \\cdot x_2 = -225 \\end{cases} \\implies x_1 = 3, \\quad x_2 = -75$$\n\n---\n\n### 🏆 ОТВЕТ:\n> <u>**Скорость течения реки равна 3 км/ч.**</u>\n\n---\n\n### 📝 ДОМАШНЕЕ ЗАДАНИЕ\n* <u>Записать подробное решение</u> задачи в тетрадь со всеми пояснениями и ОДЗ.",
-          "topic": "Теорема Виета. Задача на движение по реке"
+          "notes_md": "# Алгебра (Математика) Конспект в тетрадь\n**Дата:** 4 сентября 2026 г. (Пятница) \n**Преподаватель:** Садыкова Р.З. **Кабинет:** 303 **Время:** 10:10 – 11:40 \n\n---\n\n### ТЕМА УРОКА\n> <u>**Квадратные уравнения. Теорема Виета. Задачи на движение по реке.**</u>\n\n---\n\n### 1. Теорема Виета: формулы и правила\n\n#### 1) Для приведенного квадратного уравнения: $x^2 + px + q = 0$\n* Сумма корней: <u>**$x_1 + x_2 = -p$**</u>\n* Произведение корней: <u>**$x_1 \\cdot x_2 = q$**</u>\n\n#### 2) Для общего квадратного уравнения: $ax^2 + bx + c = 0$ (при $a \\ne 0$)\n* Сумма корней: <u>**$x_1 + x_2 = -\\frac{b}{a}$**</u>\n* Произведение корней: <u>**$x_1 \\cdot x_2 = \\frac{c}{a}$**</u>\n\n> **Главное правило знака:** \n> Коэффициент $b$ в формулу суммы корней всегда подставляется <u>**с противоположным знаком**</u>! \n> *Пример:* если $b = -14$, то $-b = \\underline{+14}$.\n\n---\n\n### 2. Текстовая задача на движение по реке\n\n#### Условие задачи:\n> Моторная лодка, собственная скорость которой равна <u>$15\\text{ км/ч}$</u>, прошла по течению реки <u>$24\\text{ км}$</u> и вернулась обратно. \n> На обратный путь (против течения) лодка затратила <u>**на 40 минут больше**</u>, чем на путь по течению. \n> <u>**Найти скорость течения реки.**</u>\n\n---\n\n#### Математическая модель:\n\n* Пусть скорость течения реки равна **$x\\text{ км/ч}$**.\n* <u>**ОДЗ:** $0 < x < 15$</u> (скорость течения положительна и меньше собственной скорости лодки).\n\n**Скорости движения:**\n* Скорость по течению: $v_{\\text{по}} = (15 + x)\\text{ км/ч}$\n* Скорость против течения: $v_{\\text{пр}} = (15 - x)\\text{ км/ч}$\n\n**Время движения ($t = \\frac{S}{v}$):**\n* Время по течению: $t_{\\text{по}} = \\dfrac{24}{15 + x}\\text{ ч}$\n* Время против течения: $t_{\\text{пр}} = \\dfrac{24}{15 - x}\\text{ ч}$\n\n**Перевод разницы во времени:** \n$$40\\text{ мин} = \\frac{40}{60}\\text{ ч} = \\underline{\\mathbf{\\frac{2}{3}\\text{ ч}}}$$\n\n---\n\n#### Составление и решение уравнения:\n\nЗная, что время против течения больше времени по течению на $\\frac{2}{3}\\text{ ч}$, составляем уравнение:\n\n$$\\frac{24}{15 - x} - \\frac{24}{15 + x} = \\frac{2}{3}$$\n\n**Шаг 1. Разделим обе части уравнения на 2:**\n$$\\frac{12}{15 - x} - \\frac{12}{15 + x} = \\frac{1}{3}$$\n\n**Шаг 2. Приводим к общему знаменателю $(15 - x)(15 + x) = 225 - x^2$:**\n$$\\frac{12(15 + x) - 12(15 - x)}{225 - x^2} = \\frac{1}{3}$$\n\nРаскрываем скобки в числителе:\n$$\\frac{180 + 12x - 180 + 12x}{225 - x^2} = \\frac{1}{3}$$\n\n$$\\frac{24x}{225 - x^2} = \\frac{1}{3}$$\n\n**Шаг 3. Умножаем пропорцией (крест-накрест):**\n$$3 \\cdot 24x = 225 - x^2$$\n$$72x = 225 - x^2$$\n$$\\underline{\\mathbf{x^2 + 72x - 225 = 0}}$$\n\n---\n\n#### Нахождение корней:\n\n**Способ 1: Через дискриминант**\n$$D = b^2 - 4ac = 72^2 - 4 \\cdot 1 \\cdot (-225) = 5184 + 900 = 6084 = 78^2$$\n$$x_1 = \\frac{-72 + 78}{2} = \\frac{6}{2} = \\underline{\\mathbf{3}}$$\n$$x_2 = \\frac{-72 - 78}{2} = \\frac{-150}{2} = -75 \\quad (\\text{не подходит, так как } x > 0)$$\n\n**Способ 2: По теореме Виета**\n$$\\begin{cases} x_1 + x_2 = -72 \\\\ x_1 \\cdot x_2 = -225 \\end{cases} \\implies x_1 = 3, \\quad x_2 = -75$$\n\n---\n\n### ОТВЕТ:\n> <u>**Скорость течения реки равна 3 км/ч.**</u>\n\n---\n\n### ДОМАШНЕЕ ЗАДАНИЕ\n* <u>Записать подробное решение</u> задачи в тетрадь со всеми пояснениями и ОДЗ.",
+          "topic": "Квадратные уравнения. Теорема Виета. Задачи на движение по реке."
         },
         {
           "num": 3,
@@ -971,7 +1157,7 @@
     },
     {
       "date": "2026-09-05",
-      "date_display": "5 сентября 2026 (Суббота)",
+      "date_display": "5 сентября 2026 г. (Суббота)",
       "short_day": "5 сен",
       "weekday": "Сб",
       "week": 1,
@@ -980,7 +1166,7 @@
           "num": 1,
           "time": "08:30 – 09:50",
           "subject": "Родная литература",
-          "room": "каб. 305",
+          "room": "каб. 203",
           "teacher": "Демидова Л.А.",
           "has_notes": false
         },
@@ -988,7 +1174,7 @@
           "num": 2,
           "time": "10:00 – 11:20",
           "subject": "Информатика",
-          "room": "каб. 301",
+          "room": "каб. 401",
           "teacher": "Алиева Э.Р.",
           "has_notes": false
         },
@@ -996,7 +1182,7 @@
           "num": 3,
           "time": "11:30 – 12:50",
           "subject": "Информатика",
-          "room": "каб. 301",
+          "room": "каб. 401",
           "teacher": "Алиева Э.Р.",
           "has_notes": false
         },
@@ -1012,7 +1198,7 @@
     },
     {
       "date": "2026-09-07",
-      "date_display": "7 сентября 2026 (Понедельник)",
+      "date_display": "7 сентября 2026 г. (Понедельник)",
       "short_day": "7 сен",
       "weekday": "Пн",
       "week": 2,
@@ -1049,8 +1235,8 @@
           "teacher": "Кузнецова Е.С.",
           "has_notes": true,
           "notes_file": "dist/notes/2026-09-07_Физика.md",
-          "notes_md": "# ⚡ Физика | Конспект в тетрадь\n**Дата:** 7 сентября 2026 г. (Понедельник)  \n**Преподаватель:** Кузнецова Е.С. | **Кабинет:** 307 | **Время:** 14:00 – 15:30  \n\n---\n\n### 📌 ТЕМА УРОКА\n> <u>**Механика. Кинематика. Механическое движение и система отсчёта.**</u>\n\n---\n\n### 📝 Основные тезисы и определения под запись:\n\n1. <u>**Механическое движение**</u> — это явление изменения положения тела или его частей в пространстве относительно другого тела с течением времени.\n2. <u>**Тело отсчёта**</u> — тело, относительно которого определяется положение других движущихся тел в пространстве.\n3. <u>**Система отсчёта**</u> включает в себя три обязательных элемента:\n   * <u>Тело отсчёта</u>.\n   * Связанную с ним <u>систему координат</u>.\n   * <u>Прибор для отсчёта времени</u> (часы).\n4. <u>**Траектория**</u> — непрерывная линия в пространстве, вдоль которой движется тело.\n5. <u>**Путь (s)**</u> — длина участка траектории, пройденного телом за данный промежуток времени (<u>скалярная величина</u>, не может уменьшаться).\n6. <u>**Перемещение (s⃗)**</u> — направленный отрезок прямой (<u>вектор</u>), соединяющий начальное положение тела с его конечным положением.\n7. <u>**Главное отличие пути от перемещения:**</u>  \n   Путь зависит от формы траектории, а модуль перемещения равен расстоянию между начальной и конечной точками по прямой.",
-          "topic": "Механическое движение и система отсчёта. Путь и перемещение"
+          "notes_md": "# Физика Конспект в тетрадь\n**Дата:** 7 сентября 2026 г. (Понедельник) \n**Преподаватель:** Кузнецова Е.С. **Кабинет:** 307 **Время:** 14:00 – 15:30 \n\n---\n\n### ТЕМА УРОКА\n> <u>**Механика. Кинематика. Механическое движение и система отсчёта.**</u>\n\n---\n\n### Основные тезисы и определения под запись:\n\n1. <u>**Механическое движение**</u> — это явление изменения положения тела или его частей в пространстве относительно другого тела с течением времени.\n2. <u>**Тело отсчёта**</u> — тело, относительно которого определяется положение других движущихся тел в пространстве.\n3. <u>**Система отсчёта**</u> включает в себя три обязательных элемента:\n* <u>Тело отсчёта</u>.\n* Связанную с ним <u>систему координат</u>.\n* <u>Прибор для отсчёта времени</u> (часы).\n4. <u>**Траектория**</u> — непрерывная линия в пространстве, вдоль которой движется тело.\n5. <u>**Путь (s)**</u> — длина участка траектории, пройденного телом за данный промежуток времени (<u>скалярная величина</u>, не может уменьшаться).\n6. <u>**Перемещение (s⃗)**</u> — направленный отрезок прямой (<u>вектор</u>), соединяющий начальное положение тела с его конечным положением.\n7. <u>**Главное отличие пути от перемещения:**</u> \nПуть зависит от формы траектории, а модуль перемещения равен расстоянию между начальной и конечной точками по прямой.",
+          "topic": "Механика. Кинематика. Механическое движение и система отсчёта."
         },
         {
           "num": 5,
@@ -1060,8 +1246,8 @@
           "teacher": "Галавова Г.В.",
           "has_notes": true,
           "notes_file": "dist/notes/2026-09-07_Русский_язык.md",
-          "notes_md": "# ✍️ Русский язык | Конспект в тетрадь\n**Дата:** 7 сентября 2026 г. (Понедельник)  \n**Преподаватель:** Галавова Г.В. | **Кабинет:** 203 | **Время:** 15:40 – 17:10  \n\n---\n\n### 📌 ТЕМА УРОКА\n> <u>**Язык как развивающаяся знаковая система. Основные функции языка.**</u>\n\n---\n\n### 📝 Определения под диктовку:\n\n1. <u>**Язык**</u> — это система знаков и способов их соединения, служащая орудием выражения мыслей, чувств, волеизъявления и являющаяся важнейшим средством человеческого общения.\n2. <u>**Знак языка**</u> — условный материальный носитель (звук, буква, морфема, слово), обозначающий понятие о предмете или явлении.\n\n---\n\n### 📋 6 основных функций языка (под запись в тетрадь):\n\n1. <u>**Коммуникативная**</u> — функция общения и обмена информацией между людьми.\n2. <u>**Когнитивная (познавательная)**</u> — функция познания мира, формирования и выражения мыслей.\n3. <u>**Аккумулятивная**</u> — накопление, хранение и передача знаний, истории и культуры от поколения к поколению.\n4. <u>**Эмотивная (экспрессивная)**</u> — выражение чувств, эмоций и душевного состояния говорящего.\n5. <u>**Волюнтативная (регулятивная)**</u> — волеизъявление, побуждение собеседника к действию (просьбы, приказы, призывы).\n6. <u>**Эстетическая**</u> — художественное воздействие красотой, ритмом и гармонией слова.\n\n---\n\n### 📝 Задание в тетради:\n* Записать по 1–2 кратких примера на каждую из 6 функций языка.",
-          "topic": "Язык как знаковая система. 6 функций языка"
+          "notes_md": "# Русский язык Конспект в тетрадь\n**Дата:** 7 сентября 2026 г. (Понедельник) \n**Преподаватель:** Галавова Г.В. **Кабинет:** 203 **Время:** 15:40 – 17:10 \n\n---\n\n### ТЕМА УРОКА\n> <u>**Язык как развивающаяся знаковая система. Основные функции языка.**</u>\n\n---\n\n### Определения под диктовку:\n\n1. <u>**Язык**</u> — это система знаков и способов их соединения, служащая орудием выражения мыслей, чувств, волеизъявления и являющаяся важнейшим средством человеческого общения.\n2. <u>**Знак языка**</u> — условный материальный носитель (звук, буква, морфема, слово), обозначающий понятие о предмете или явлении.\n\n---\n\n### 6 основных функций языка (под запись в тетрадь):\n\n1. <u>**Коммуникативная**</u> — функция общения и обмена информацией между людьми.\n2. <u>**Когнитивная (познавательная)**</u> — функция познания мира, формирования и выражения мыслей.\n3. <u>**Аккумулятивная**</u> — накопление, хранение и передача знаний, истории и культуры от поколения к поколению.\n4. <u>**Эмотивная (экспрессивная)**</u> — выражение чувств, эмоций и душевного состояния говорящего.\n5. <u>**Волюнтативная (регулятивная)**</u> — волеизъявление, побуждение собеседника к действию (просьбы, приказы, призывы).\n6. <u>**Эстетическая**</u> — художественное воздействие красотой, ритмом и гармонией слова.\n\n---\n\n### Задание в тетради:\n* Записать по 1–2 кратких примера на каждую из 6 функций языка.",
+          "topic": "Язык как развивающаяся знаковая система. Основные функции языка."
         },
         {
           "num": 6,
@@ -1071,14 +1257,14 @@
           "teacher": "Галавова Г.В.",
           "has_notes": true,
           "notes_file": "dist/notes/2026-09-07_Литература.md",
-          "notes_md": "# 📖 Литература | Конспект в тетрадь\n**Дата:** 7 сентября 2026 г. (Понедельник)  \n**Преподаватель:** Галавова Г.В. | **Кабинет:** 203 | **Время:** 17:20 – 18:50  \n\n---\n\n### 📌 ТЕМА УРОКА\n> <u>**Становление реализма в русской литературе первой половины XIX века. Основоположники реализма.**</u>\n\n---\n\n### ⚖️ Сравнение романтизма и реализма (в тетрадь):\n\n* <u>**Романтизм**</u> — <u>исключительный герой в исключительных обстоятельствах</u> (бунт против общества, уход в мир грёз и фантазии).\n* <u>**Реализм**</u> — <u>типичный герой в типичных обстоятельствах</u> (правдивое отражение жизни, исследование влияния общества и среды на характер человека).\n\n---\n\n### 🏛️ Основоположники русского реализма (под запись):\n\n1. <u>**И. А. Крылов**</u> — басни: живой народный язык, сатира на реальные пороки общества и человеческие слабости.\n2. <u>**А. С. Грибоедов**</u> — комедия <u>«Горе от ума»</u>: реалистическое изображение московского дворянства, конфликт Чацкого и фамусовского общества.\n3. <u>**А. С. Пушкин**</u> — <u>родоначальник реализма в русской литературе</u> и создатель современного русского литературного языка.  \n   * Ключевые реалистические произведения: роман в стихах <u>«Евгений Онегин»</u> («энциклопедия русской жизни»), историческая драма <u>«Борис Годунов»</u>, повесть <u>«Капитанская дочка»</u>.",
-          "topic": "Становление реализма в русской литературе XIX века"
+          "notes_md": "# Литература Конспект в тетрадь\n**Дата:** 7 сентября 2026 г. (Понедельник) \n**Преподаватель:** Галавова Г.В. **Кабинет:** 203 **Время:** 17:20 – 18:50 \n\n---\n\n### ТЕМА УРОКА\n> <u>**Становление реализма в русской литературе первой половины XIX века. Основоположники реализма.**</u>\n\n---\n\n### Сравнение романтизма и реализма (в тетрадь):\n\n* <u>**Романтизм**</u> — <u>исключительный герой в исключительных обстоятельствах</u> (бунт против общества, уход в мир грёз и фантазии).\n* <u>**Реализм**</u> — <u>типичный герой в типичных обстоятельствах</u> (правдивое отражение жизни, исследование влияния общества и среды на характер человека).\n\n---\n\n### Основоположники русского реализма (под запись):\n\n1. <u>**И. А. Крылов**</u> — басни: живой народный язык, сатира на реальные пороки общества и человеческие слабости.\n2. <u>**А. С. Грибоедов**</u> — комедия <u>«Горе от ума»</u>: реалистическое изображение московского дворянства, конфликт Чацкого и фамусовского общества.\n3. <u>**А. С. Пушкин**</u> — <u>родоначальник реализма в русской литературе</u> и создатель современного русского литературного языка. \n* Ключевые реалистические произведения: роман в стихах <u>«Евгений Онегин»</u> («энциклопедия русской жизни»), историческая драма <u>«Борис Годунов»</u>, повесть <u>«Капитанская дочка»</u>.",
+          "topic": "Становление реализма в русской литературе первой половины XIX века. Основоположники реализма."
         }
       ]
     },
     {
       "date": "2026-09-08",
-      "date_display": "8 сентября 2026 (Вторник)",
+      "date_display": "8 сентября 2026 г. (Вторник)",
       "short_day": "8 сен",
       "weekday": "Вт",
       "week": 2,
@@ -1091,8 +1277,8 @@
           "teacher": "Садыкова Р.З.",
           "has_notes": true,
           "notes_file": "dist/notes/2026-09-08_Математика.md",
-          "notes_md": "# 📐 Математика (Алгебра) | Конспект в тетрадь\n**Дата:** 8 сентября 2026 г. (Вторник)  \n**Преподаватель:** Садыкова Р.З. | **Кабинет:** 303 | **Время:** 08:30 – 11:40  \n\n---\n\n### 📌 ТЕМА УРОКА\n> <u>**Текстовые задачи на смеси и совместную работу. Метод интервалов для решения неравенств.**</u>\n\n---\n\n### 🍄 1. Задача на концентрацию и сушку (проценты)\n\n#### 📋 Условие задачи:\n> Свежие грибы по массе содержат <u>**90% воды**</u>, а сушёные — <u>**20% воды**</u>.  \n> Сколько нужно собрать свежих грибов, чтобы получить <u>**4,5 кг сушёных**</u>?\n\n---\n\n#### ✏️ Решение под запись:\n\n1. **Сухое вещество в сушёных грибах:**\n   * Процент сухого вещества: $100\\% - 20\\% = \\underline{\\mathbf{80\\%}} = 0{,}8$.\n   * Масса сухого вещества:\n     $$m_{\\text{сух}} = 4{,}5 \\cdot 0{,}8 = \\underline{\\mathbf{3{,}6\\text{ кг}}}$$\n\n2. **Сухое вещество в свежих грибах:**\n   * Процент сухого вещества: $100\\% - 90\\% = \\underline{\\mathbf{10\\%}} = 0{,}1$.\n   * Так как масса сухого вещества при сушке не меняется ($3{,}6\\text{ кг}$), находим массу свежих грибов:\n     $$m_{\\text{свеж}} = \\frac{3{,}6}{0{,}1} = \\underline{\\mathbf{36\\text{ кг}}}$$\n\n> **Ответ:** <u>**36 кг** свежих грибов</u>.\n\n---\n\n### 🚰 2. Задача на совместную работу (бассейн и трубы)\n\n* Вся выполненная работа принимается за единицу: <u>**$A = 1$**</u>.\n* Производительность труда (скорость работы):\n  $$p = \\frac{A}{t} = \\frac{1}{t}$$\n* При совместной работе производительности складываются:\n  $$p_{\\text{общ}} = \\frac{1}{t_1} + \\frac{1}{t_2}$$\n\n---\n\n### 🔢 3. Алгоритм метода интервалов (для решения неравенств)\n\n1. <u>**Приведение к стандартному виду:**</u>  \n   Перенести все слагаемые в левую часть, чтобы справа остался нуль:\n   $$f(x) > 0 \\quad (\\text{или } < 0, \\;\\ge 0, \\;\\le 0)$$\n\n2. <u>**Нахождение нулей функции и ОДЗ:**</u>  \n   Приравнять числитель и знаменатель к нулю. Знаменатель <u>строго не равен нулю</u> ($x \\ne 0$).\n\n3. <u>**Нанесение точек на числовую прямую:**</u>  \n   * Строгое неравенство ($>$, $<$) — все точки <u>**выколотые**</u> (круглые скобки).  \n   * Нестрогое неравенство ($\\ge$, $\\le$) — нули числителя <u>**закрашенные**</u> (квадратные скобки), а нули знаменателя <u>**всегда выколотые**</u>.\n\n4. <u>**Определение знаков на интервалах:**</u>  \n   Используется правило чередования знаков или метод пробной точки из каждого интервала.\n\n5. <u>**Запись ответа:**</u>  \n   В виде объединения числовых промежутков (например, $(-\\infty; -3] \\cup (2; +\\infty)$).",
-          "topic": "Задачи на смеси, сушку и совместную работу"
+          "notes_md": "# Математика (Алгебра) Конспект в тетрадь\n**Дата:** 8 сентября 2026 г. (Вторник) \n**Преподаватель:** Садыкова Р.З. **Кабинет:** 303 **Время:** 08:30 – 11:40 \n\n---\n\n### ТЕМА УРОКА\n> <u>**Текстовые задачи на смеси и совместную работу. Метод интервалов для решения неравенств.**</u>\n\n---\n\n### 1. Задача на концентрацию и сушку (проценты)\n\n#### Условие задачи:\n> Свежие грибы по массе содержат <u>**90% воды**</u>, а сушёные — <u>**20% воды**</u>. \n> Сколько нужно собрать свежих грибов, чтобы получить <u>**4,5 кг сушёных**</u>?\n\n---\n\n#### Решение под запись:\n\n1. **Сухое вещество в сушёных грибах:**\n* Процент сухого вещества: $100\\% - 20\\% = \\underline{\\mathbf{80\\%}} = 0{,}8$.\n* Масса сухого вещества:\n$$m_{\\text{сух}} = 4{,}5 \\cdot 0{,}8 = \\underline{\\mathbf{3{,}6\\text{ кг}}}$$\n\n2. **Сухое вещество в свежих грибах:**\n* Процент сухого вещества: $100\\% - 90\\% = \\underline{\\mathbf{10\\%}} = 0{,}1$.\n* Так как масса сухого вещества при сушке не меняется ($3{,}6\\text{ кг}$), находим массу свежих грибов:\n$$m_{\\text{свеж}} = \\frac{3{,}6}{0{,}1} = \\underline{\\mathbf{36\\text{ кг}}}$$\n\n> **Ответ:** <u>**36 кг** свежих грибов</u>.\n\n---\n\n### 2. Задача на совместную работу (бассейн и трубы)\n\n* Вся выполненная работа принимается за единицу: <u>**$A = 1$**</u>.\n* Производительность труда (скорость работы):\n$$p = \\frac{A}{t} = \\frac{1}{t}$$\n* При совместной работе производительности складываются:\n$$p_{\\text{общ}} = \\frac{1}{t_1} + \\frac{1}{t_2}$$\n\n---\n\n### 3. Алгоритм метода интервалов (для решения неравенств)\n\n1. <u>**Приведение к стандартному виду:**</u> \nПеренести все слагаемые в левую часть, чтобы справа остался нуль:\n$$f(x) > 0 \\quad (\\text{или } < 0, \\;\\ge 0, \\;\\le 0)$$\n\n2. <u>**Нахождение нулей функции и ОДЗ:**</u> \nПриравнять числитель и знаменатель к нулю. Знаменатель <u>строго не равен нулю</u> ($x \\ne 0$).\n\n3. <u>**Нанесение точек на числовую прямую:**</u> \n* Строгое неравенство ($>$, $<$) — все точки <u>**выколотые**</u> (круглые скобки). \n* Нестрогое неравенство ($\\ge$, $\\le$) — нули числителя <u>**закрашенные**</u> (квадратные скобки), а нули знаменателя <u>**всегда выколотые**</u>.\n\n4. <u>**Определение знаков на интервалах:**</u> \nИспользуется правило чередования знаков или метод пробной точки из каждого интервала.\n\n5. <u>**Запись ответа:**</u> \nВ виде объединения числовых промежутков (например, $(-\\infty; -3] \\cup (2; +\\infty)$).",
+          "topic": "Текстовые задачи на смеси и совместную работу. Метод интервалов для решения неравенств."
         },
         {
           "num": 2,
@@ -1102,8 +1288,8 @@
           "teacher": "Садыкова Р.З.",
           "has_notes": true,
           "notes_file": "dist/notes/2026-09-08_Математика.md",
-          "notes_md": "# 📐 Математика (Алгебра) | Конспект в тетрадь\n**Дата:** 8 сентября 2026 г. (Вторник)  \n**Преподаватель:** Садыкова Р.З. | **Кабинет:** 303 | **Время:** 08:30 – 11:40  \n\n---\n\n### 📌 ТЕМА УРОКА\n> <u>**Текстовые задачи на смеси и совместную работу. Метод интервалов для решения неравенств.**</u>\n\n---\n\n### 🍄 1. Задача на концентрацию и сушку (проценты)\n\n#### 📋 Условие задачи:\n> Свежие грибы по массе содержат <u>**90% воды**</u>, а сушёные — <u>**20% воды**</u>.  \n> Сколько нужно собрать свежих грибов, чтобы получить <u>**4,5 кг сушёных**</u>?\n\n---\n\n#### ✏️ Решение под запись:\n\n1. **Сухое вещество в сушёных грибах:**\n   * Процент сухого вещества: $100\\% - 20\\% = \\underline{\\mathbf{80\\%}} = 0{,}8$.\n   * Масса сухого вещества:\n     $$m_{\\text{сух}} = 4{,}5 \\cdot 0{,}8 = \\underline{\\mathbf{3{,}6\\text{ кг}}}$$\n\n2. **Сухое вещество в свежих грибах:**\n   * Процент сухого вещества: $100\\% - 90\\% = \\underline{\\mathbf{10\\%}} = 0{,}1$.\n   * Так как масса сухого вещества при сушке не меняется ($3{,}6\\text{ кг}$), находим массу свежих грибов:\n     $$m_{\\text{свеж}} = \\frac{3{,}6}{0{,}1} = \\underline{\\mathbf{36\\text{ кг}}}$$\n\n> **Ответ:** <u>**36 кг** свежих грибов</u>.\n\n---\n\n### 🚰 2. Задача на совместную работу (бассейн и трубы)\n\n* Вся выполненная работа принимается за единицу: <u>**$A = 1$**</u>.\n* Производительность труда (скорость работы):\n  $$p = \\frac{A}{t} = \\frac{1}{t}$$\n* При совместной работе производительности складываются:\n  $$p_{\\text{общ}} = \\frac{1}{t_1} + \\frac{1}{t_2}$$\n\n---\n\n### 🔢 3. Алгоритм метода интервалов (для решения неравенств)\n\n1. <u>**Приведение к стандартному виду:**</u>  \n   Перенести все слагаемые в левую часть, чтобы справа остался нуль:\n   $$f(x) > 0 \\quad (\\text{или } < 0, \\;\\ge 0, \\;\\le 0)$$\n\n2. <u>**Нахождение нулей функции и ОДЗ:**</u>  \n   Приравнять числитель и знаменатель к нулю. Знаменатель <u>строго не равен нулю</u> ($x \\ne 0$).\n\n3. <u>**Нанесение точек на числовую прямую:**</u>  \n   * Строгое неравенство ($>$, $<$) — все точки <u>**выколотые**</u> (круглые скобки).  \n   * Нестрогое неравенство ($\\ge$, $\\le$) — нули числителя <u>**закрашенные**</u> (квадратные скобки), а нули знаменателя <u>**всегда выколотые**</u>.\n\n4. <u>**Определение знаков на интервалах:**</u>  \n   Используется правило чередования знаков или метод пробной точки из каждого интервала.\n\n5. <u>**Запись ответа:**</u>  \n   В виде объединения числовых промежутков (например, $(-\\infty; -3] \\cup (2; +\\infty)$).",
-          "topic": "Метод интервалов для решения неравенств"
+          "notes_md": "# Математика (Алгебра) Конспект в тетрадь\n**Дата:** 8 сентября 2026 г. (Вторник) \n**Преподаватель:** Садыкова Р.З. **Кабинет:** 303 **Время:** 08:30 – 11:40 \n\n---\n\n### ТЕМА УРОКА\n> <u>**Текстовые задачи на смеси и совместную работу. Метод интервалов для решения неравенств.**</u>\n\n---\n\n### 1. Задача на концентрацию и сушку (проценты)\n\n#### Условие задачи:\n> Свежие грибы по массе содержат <u>**90% воды**</u>, а сушёные — <u>**20% воды**</u>. \n> Сколько нужно собрать свежих грибов, чтобы получить <u>**4,5 кг сушёных**</u>?\n\n---\n\n#### Решение под запись:\n\n1. **Сухое вещество в сушёных грибах:**\n* Процент сухого вещества: $100\\% - 20\\% = \\underline{\\mathbf{80\\%}} = 0{,}8$.\n* Масса сухого вещества:\n$$m_{\\text{сух}} = 4{,}5 \\cdot 0{,}8 = \\underline{\\mathbf{3{,}6\\text{ кг}}}$$\n\n2. **Сухое вещество в свежих грибах:**\n* Процент сухого вещества: $100\\% - 90\\% = \\underline{\\mathbf{10\\%}} = 0{,}1$.\n* Так как масса сухого вещества при сушке не меняется ($3{,}6\\text{ кг}$), находим массу свежих грибов:\n$$m_{\\text{свеж}} = \\frac{3{,}6}{0{,}1} = \\underline{\\mathbf{36\\text{ кг}}}$$\n\n> **Ответ:** <u>**36 кг** свежих грибов</u>.\n\n---\n\n### 2. Задача на совместную работу (бассейн и трубы)\n\n* Вся выполненная работа принимается за единицу: <u>**$A = 1$**</u>.\n* Производительность труда (скорость работы):\n$$p = \\frac{A}{t} = \\frac{1}{t}$$\n* При совместной работе производительности складываются:\n$$p_{\\text{общ}} = \\frac{1}{t_1} + \\frac{1}{t_2}$$\n\n---\n\n### 3. Алгоритм метода интервалов (для решения неравенств)\n\n1. <u>**Приведение к стандартному виду:**</u> \nПеренести все слагаемые в левую часть, чтобы справа остался нуль:\n$$f(x) > 0 \\quad (\\text{или } < 0, \\;\\ge 0, \\;\\le 0)$$\n\n2. <u>**Нахождение нулей функции и ОДЗ:**</u> \nПриравнять числитель и знаменатель к нулю. Знаменатель <u>строго не равен нулю</u> ($x \\ne 0$).\n\n3. <u>**Нанесение точек на числовую прямую:**</u> \n* Строгое неравенство ($>$, $<$) — все точки <u>**выколотые**</u> (круглые скобки). \n* Нестрогое неравенство ($\\ge$, $\\le$) — нули числителя <u>**закрашенные**</u> (квадратные скобки), а нули знаменателя <u>**всегда выколотые**</u>.\n\n4. <u>**Определение знаков на интервалах:**</u> \nИспользуется правило чередования знаков или метод пробной точки из каждого интервала.\n\n5. <u>**Запись ответа:**</u> \nВ виде объединения числовых промежутков (например, $(-\\infty; -3] \\cup (2; +\\infty)$).",
+          "topic": "Текстовые задачи на смеси и совместную работу. Метод интервалов для решения неравенств."
         },
         {
           "num": 3,
@@ -1113,8 +1299,8 @@
           "teacher": "Бахтина С.А.",
           "has_notes": true,
           "notes_file": "dist/notes/2026-09-08_География.md",
-          "notes_md": "# 🌍 География | Конспект в тетрадь\n**Дата:** 8 сентября 2026 г. (Вторник)  \n**Преподаватель:** Бахтина С.А. | **Кабинет:** 307 | **Время:** 12:10 – 13:40  \n\n---\n\n### 📌 ТЕМА УРОКА\n> <u>**Глобальные проблемы человечества. Естественные и антропогенные ландшафты.**</u>\n\n---\n\n### 🌐 1. Глобальные проблемы человечества (под запись):\n\n1. <u>**Сохранение мира на Земле**</u> (предотвращение войн и терроризма).\n2. <u>**Экологическая проблема**</u> (загрязнение биосферы, изменение климата).\n3. <u>**Демографическая проблема**</u> (перенаселение развивающихся стран и депопуляция развитых).\n4. <u>**Продовольственная проблема**</u> (голод и нехватка качественной пищи).\n5. <u>**Энергетическая и сырьевая проблемы**</u> (истощение невозобновимых ресурсов).\n6. <u>**Проблема здоровья и болезней**</u> (эпидемии, качество медицины и питания).\n7. <u>**Освоение Мирового океана и космоса**</u>.\n\n---\n\n### 🏞️ 2. Антропогенные ландшафты (определение под диктовку):\n\n> <u>**Антропогенный ландшафт**</u> — это культурный ландшафт, созданный человеком на основе видоизменённых природных ландшафтов.\n\n* **Примеры:** города, сельскохозяйственные поля, водохранилища, промышленные зоны, парки, санатории, туристические базы и дорожные сети.\n\n---\n\n### 📝 ДОМАШНЕЕ ЗАДАНИЕ\n1. <u>Выбрать одну</u> из 7 глобальных проблем человечества и подготовить <u>краткое сообщение</u> (не реферат).\n2. Привести 2–3 примера антропогенных ландшафтов своей местности.",
-          "topic": "Глобальные проблемы человечества. Антропогенные ландшафты"
+          "notes_md": "# География Конспект в тетрадь\n**Дата:** 8 сентября 2026 г. (Вторник) \n**Преподаватель:** Бахтина С.А. **Кабинет:** 307 **Время:** 12:10 – 13:40 \n\n---\n\n### ТЕМА УРОКА\n> <u>**Глобальные проблемы человечества. Естественные и антропогенные ландшафты.**</u>\n\n---\n\n### 1. Глобальные проблемы человечества (под запись):\n\n1. <u>**Сохранение мира на Земле**</u> (предотвращение войн и терроризма).\n2. <u>**Экологическая проблема**</u> (загрязнение биосферы, изменение климата).\n3. <u>**Демографическая проблема**</u> (перенаселение развивающихся стран и депопуляция развитых).\n4. <u>**Продовольственная проблема**</u> (голод и нехватка качественной пищи).\n5. <u>**Энергетическая и сырьевая проблемы**</u> (истощение невозобновимых ресурсов).\n6. <u>**Проблема здоровья и болезней**</u> (эпидемии, качество медицины и питания).\n7. <u>**Освоение Мирового океана и космоса**</u>.\n\n---\n\n### 2. Антропогенные ландшафты (определение под диктовку):\n\n> <u>**Антропогенный ландшафт**</u> — это культурный ландшафт, созданный человеком на основе видоизменённых природных ландшафтов.\n\n* **Примеры:** города, сельскохозяйственные поля, водохранилища, промышленные зоны, парки, санатории, туристические базы и дорожные сети.\n\n---\n\n### ДОМАШНЕЕ ЗАДАНИЕ\n1. <u>Выбрать одну</u> из 7 глобальных проблем человечества и подготовить <u>краткое сообщение</u> (не реферат).\n2. Привести 2–3 примера антропогенных ландшафтов своей местности.",
+          "topic": "Глобальные проблемы человечества. Естественные и антропогенные ландшафты."
         },
         {
           "num": 4,
@@ -1128,7 +1314,7 @@
     },
     {
       "date": "2026-09-09",
-      "date_display": "9 сентября 2026 (Среда)",
+      "date_display": "9 сентября 2026 г. (Среда)",
       "short_day": "9 сен",
       "weekday": "Ср",
       "week": 2,
@@ -1136,26 +1322,35 @@
         {
           "num": 1,
           "time": "08:30 – 10:00",
-          "subject": "Математика",
+          "subject": "Математика (Алгебра)",
           "room": "каб. 303",
           "teacher": "Садыкова Р.З.",
-          "has_notes": false
+          "has_notes": true,
+          "notes_file": "dist/notes/2026-09-09_Математика.md",
+          "notes_md": "# Математика (Алгебра) Конспект в тетрадь\n**Дата:** 9 сентября 2026 г. (Среда)\n**Преподаватель:** Садыкова Р.З. **Кабинет:** 303 **Время:** 08:30 – 11:40\n\n---\n\n### ТЕМА УРОКА\n> <u>**Текстовые задачи на среднюю скорость движения, смеси и сплавы. Системы уравнений.**</u>\n\n---\n\n### 1. Формула средней скорости движения\n\n* Средняя скорость — это отношение <u>всего пройденного пути</u> ко <u>всему затраченному времени</u>:\n$$v_{\\\\text{ср}} = \\\\frac{S_{\\\\text{общ}}}{t_{\\\\text{общ}}}$$\n\n> <u>**Важно:**</u> средняя скорость **не равна** среднему арифметическому скоростей:\n> $$v_{\\\\text{ср}} \\\\ne \\\\frac{v_1 + v_2}{2}$$\n\n---\n\n#### Задача 1 (под диктовку):\n> Первую четверть пути поезд шёл со скоростью <u>**80 км/ч**</u>, а оставшиеся $\\\\frac{3}{4}$ пути — со скоростью <u>**60 км/ч**</u>. \n> Найти среднюю скорость поезда на всём пути.\n\n#### Решение под запись:\n1. Пусть весь путь равен $S$.\n2. Время на первом участке пути ($S_1 = \\\\frac{1}{4}S$):\n$$t_1 = \\\\frac{\\\\frac{1}{4}S}{80} = \\\\frac{S}{320}$$\n3. Время на втором участке пути ($S_2 = \\\\frac{3}{4}S$):\n$$t_2 = \\\\frac{\\\\frac{3}{4}S}{60} = \\\\frac{S}{80} = \\\\frac{4S}{320}$$\n4. Общее время в пути:\n$$t_{\\\\text{общ}} = t_1 + t_2 = \\\\frac{S}{320} + \\\\frac{4S}{320} = \\\\frac{5S}{320} = \\\\frac{S}{64}$$\n5. Средняя скорость:\n$$v_{\\\\text{ср}} = \\\\frac{S}{t_{\\\\text{общ}}} = \\\\frac{S}{\\\\frac{S}{64}} = \\\\underline{\\\\mathbf{64\\\\text{ км/ч}}}$$\n\n> **Ответ:** <u>**64 км/ч**</u>.\n\n---\n\n### 2. Задача на смеси и растворы (система двух уравнений)\n\n#### Условие задачи:\n> Смешали <u>**30%-ный**</u> и <u>**60%-ный**</u> растворы кислоты и добавили <u>**10 л чистой воды**</u>, получили <u>**36%-ный раствор**</u>. \n> Если бы вместо 10 л воды добавили <u>**10 л 50%-ного раствора**</u> той же кислоты, то получили бы <u>**41%-ный раствор**</u>. \n> Сколько литров 30%-ного раствора использовали для смеси?\n\n---\n\n#### Решение под запись:\nПусть $x$ л — объём 30%-ного раствора кислоты, $y$ л — объём 60%-ного раствора кислоты.\n\n1. **Первое состояние (добавили 10 л воды):**\n   * Масса чистой кислоты в растворах: $0{,}3x + 0{,}6y$.\n   * Общий объём получившейся смеси: $x + y + 10$ л.\n   * Уравнение:\n   $$0{,}3x + 0{,}6y = 0{,}36(x + y + 10)$$\n   $$0{,}3x + 0{,}6y = 0{,}36x + 0{,}36y + 3{,}6$$\n   $$-0{,}06x + 0{,}24y = 3{,}6 \\\\quad \\\\big| \\\\cdot (-100)$$\n   $$6x - 24y = -360 \\\\implies x - 4y = -60 \\\\implies \\\\underline{\\\\mathbf{x = 4y - 60}}$$\n\n2. **Второе состояние (добавили 10 л 50%-ного раствора):**\n   * Масса чистой кислоты: $0{,}3x + 0{,}6y + 0{,}5 \\\\cdot 10 = 0{,}3x + 0{,}6y + 5$.\n   * Общий объём смеси: $x + y + 10$ л.\n   * Уравнение:\n   $$0{,}3x + 0{,}6y + 5 = 0{,}41(x + y + 10)$$\n   $$0{,}3x + 0{,}6y + 5 = 0{,}41x + 0{,}41y + 4{,}1$$\n   $$-0{,}11x + 0{,}19y = -0{,}9 \\\\quad \\\\big| \\\\cdot (-100)$$\n   $$\\\\underline{\\\\mathbf{11x - 19y = 90}}$$\n\n3. **Решение системы уравнений:**\n   $$\\\\begin{cases} x = 4y - 60 \\\\\\\\ 11x - 19y = 90 \\\\end{cases}$$\n   Подставляем выражение $x$ во второе уравнение:\n   $$11(4y - 60) - 19y = 90$$\n   $$44y - 660 - 19y = 90$$\n   $$25y = 750 \\\\implies \\\\underline{\\\\mathbf{y = 30\\\\text{ л}}}$$\n   Находим $x$:\n   $$x = 4 \\\\cdot 30 - 60 = 120 - 60 = \\\\underline{\\\\mathbf{60\\\\text{ л}}}$$\n\n> **Ответ:** <u>**60 л**</u> 30%-ного раствора кислоты.\n\n---\n\n### 3. Домашнее задание\n1. **Задача:** Смешали 10%-ный раствор кислоты и в таком же количестве 20%-ный раствор кислоты. Сколько процентов составляет концентрация получившегося раствора?\n2. **Неравенства:** Решить методом интервалов заданные на уроке дробно-рациональные неравенства.",
+          "topic": "Текстовые задачи на среднюю скорость движения, смеси и сплавы. Системы уравнений."
         },
         {
           "num": 2,
           "time": "10:10 – 11:40",
-          "subject": "Математика",
+          "subject": "Математика (Алгебра)",
           "room": "каб. 303",
           "teacher": "Садыкова Р.З.",
-          "has_notes": false
+          "has_notes": true,
+          "notes_file": "dist/notes/2026-09-09_Математика.md",
+          "notes_md": "# Математика (Алгебра) Конспект в тетрадь\n**Дата:** 9 сентября 2026 г. (Среда)\n**Преподаватель:** Садыкова Р.З. **Кабинет:** 303 **Время:** 08:30 – 11:40\n\n---\n\n### ТЕМА УРОКА\n> <u>**Текстовые задачи на среднюю скорость движения, смеси и сплавы. Системы уравнений.**</u>\n\n---\n\n### 1. Формула средней скорости движения\n\n* Средняя скорость — это отношение <u>всего пройденного пути</u> ко <u>всему затраченному времени</u>:\n$$v_{\\\\text{ср}} = \\\\frac{S_{\\\\text{общ}}}{t_{\\\\text{общ}}}$$\n\n> <u>**Важно:**</u> средняя скорость **не равна** среднему арифметическому скоростей:\n> $$v_{\\\\text{ср}} \\\\ne \\\\frac{v_1 + v_2}{2}$$\n\n---\n\n#### Задача 1 (под диктовку):\n> Первую четверть пути поезд шёл со скоростью <u>**80 км/ч**</u>, а оставшиеся $\\\\frac{3}{4}$ пути — со скоростью <u>**60 км/ч**</u>. \n> Найти среднюю скорость поезда на всём пути.\n\n#### Решение под запись:\n1. Пусть весь путь равен $S$.\n2. Время на первом участке пути ($S_1 = \\\\frac{1}{4}S$):\n$$t_1 = \\\\frac{\\\\frac{1}{4}S}{80} = \\\\frac{S}{320}$$\n3. Время на втором участке пути ($S_2 = \\\\frac{3}{4}S$):\n$$t_2 = \\\\frac{\\\\frac{3}{4}S}{60} = \\\\frac{S}{80} = \\\\frac{4S}{320}$$\n4. Общее время в пути:\n$$t_{\\\\text{общ}} = t_1 + t_2 = \\\\frac{S}{320} + \\\\frac{4S}{320} = \\\\frac{5S}{320} = \\\\frac{S}{64}$$\n5. Средняя скорость:\n$$v_{\\\\text{ср}} = \\\\frac{S}{t_{\\\\text{общ}}} = \\\\frac{S}{\\\\frac{S}{64}} = \\\\underline{\\\\mathbf{64\\\\text{ км/ч}}}$$\n\n> **Ответ:** <u>**64 км/ч**</u>.\n\n---\n\n### 2. Задача на смеси и растворы (система двух уравнений)\n\n#### Условие задачи:\n> Смешали <u>**30%-ный**</u> и <u>**60%-ный**</u> растворы кислоты и добавили <u>**10 л чистой воды**</u>, получили <u>**36%-ный раствор**</u>. \n> Если бы вместо 10 л воды добавили <u>**10 л 50%-ного раствора**</u> той же кислоты, то получили бы <u>**41%-ный раствор**</u>. \n> Сколько литров 30%-ного раствора использовали для смеси?\n\n---\n\n#### Решение под запись:\nПусть $x$ л — объём 30%-ного раствора кислоты, $y$ л — объём 60%-ного раствора кислоты.\n\n1. **Первое состояние (добавили 10 л воды):**\n   * Масса чистой кислоты в растворах: $0{,}3x + 0{,}6y$.\n   * Общий объём получившейся смеси: $x + y + 10$ л.\n   * Уравнение:\n   $$0{,}3x + 0{,}6y = 0{,}36(x + y + 10)$$\n   $$0{,}3x + 0{,}6y = 0{,}36x + 0{,}36y + 3{,}6$$\n   $$-0{,}06x + 0{,}24y = 3{,}6 \\\\quad \\\\big| \\\\cdot (-100)$$\n   $$6x - 24y = -360 \\\\implies x - 4y = -60 \\\\implies \\\\underline{\\\\mathbf{x = 4y - 60}}$$\n\n2. **Второе состояние (добавили 10 л 50%-ного раствора):**\n   * Масса чистой кислоты: $0{,}3x + 0{,}6y + 0{,}5 \\\\cdot 10 = 0{,}3x + 0{,}6y + 5$.\n   * Общий объём смеси: $x + y + 10$ л.\n   * Уравнение:\n   $$0{,}3x + 0{,}6y + 5 = 0{,}41(x + y + 10)$$\n   $$0{,}3x + 0{,}6y + 5 = 0{,}41x + 0{,}41y + 4{,}1$$\n   $$-0{,}11x + 0{,}19y = -0{,}9 \\\\quad \\\\big| \\\\cdot (-100)$$\n   $$\\\\underline{\\\\mathbf{11x - 19y = 90}}$$\n\n3. **Решение системы уравнений:**\n   $$\\\\begin{cases} x = 4y - 60 \\\\\\\\ 11x - 19y = 90 \\\\end{cases}$$\n   Подставляем выражение $x$ во второе уравнение:\n   $$11(4y - 60) - 19y = 90$$\n   $$44y - 660 - 19y = 90$$\n   $$25y = 750 \\\\implies \\\\underline{\\\\mathbf{y = 30\\\\text{ л}}}$$\n   Находим $x$:\n   $$x = 4 \\\\cdot 30 - 60 = 120 - 60 = \\\\underline{\\\\mathbf{60\\\\text{ л}}}$$\n\n> **Ответ:** <u>**60 л**</u> 30%-ного раствора кислоты.\n\n---\n\n### 3. Домашнее задание\n1. **Задача:** Смешали 10%-ный раствор кислоты и в таком же количестве 20%-ный раствор кислоты. Сколько процентов составляет концентрация получившегося раствора?\n2. **Неравенства:** Решить методом интервалов заданные на уроке дробно-рациональные неравенства.",
+          "topic": "Текстовые задачи на среднюю скорость движения, смеси и сплавы. Системы уравнений."
         },
         {
           "num": 3,
           "time": "12:10 – 13:40",
           "subject": "Физика",
-          "room": "каб. 307",
+          "room": "каб. 204",
           "teacher": "Кузнецова Е.С.",
-          "has_notes": false
+          "has_notes": true,
+          "notes_file": "dist/notes/2026-09-09_Физика.md",
+          "notes_md": "# Физика Конспект в тетрадь\n**Дата:** 9 сентября 2026 г. (Среда)\n**Преподаватель:** Кузнецова Е.С. **Кабинет:** 204 **Время:** 11:50 – 13:20\n\n---\n\n### ТЕМА УРОКА\n> <u>**Прямолинейное равномерное и равноускоренное движение. Кинематические уравнения движения.**</u>\n\n---\n\n### 1. Основные понятия кинематики\n\n* <u>**Материальная точка**</u> — тело, размерами которого в условиях данной задачи можно пренебречь.\n* <u>**Траектория**</u> — непрерывная линия, которую описывает материальная точка при своём движении.\n* <u>**Путь ($l$)**</u> — скалярная величина, равная длине траектории (всегда $l \\\\ge 0$).\n* <u>**Перемещение ($\\\\vec{s}$)**</u> — направленный отрезок прямой (вектор), соединяющий начальное положение тела с его конечным положением:\n$$\\\\vec{s} = \\\\Delta \\\\vec{r} = \\\\vec{r} - \\\\vec{r}_0$$\n\n---\n\n### 2. Равномерное прямолинейное движение ($a = 0$)\n\nДвижение, при котором тело за любые равные промежутки времени совершает одинаковые перемещения ($\\\\vec{v} = \\\\text{const}$).\n\n* **Скорость равномерного движения:**\n$$\\\\vec{v} = \\\\frac{\\\\vec{s}}{t}$$\n* **Проекция перемещения:**\n$$s_x = v_x t$$\n* **Уравнение координаты (закон движения):**\n$$x(t) = x_0 + v_x t$$\n\n---\n\n### 3. Равноускоренное прямолинейное движение ($a = \\\\text{const} \\\\ne 0$)\n\nДвижение с постоянным по модулю и направлению ускорением.\n\n* <u>**Ускорение ($\\\\vec{a}$)**</u> — векторная величина, характеризующая быстроту изменения скорости:\n$$\\\\vec{a} = \\\\frac{\\\\Delta \\\\vec{v}}{\\\\Delta t} = \\\\frac{\\\\vec{v} - \\\\vec{v}_0}{t}$$\n* **Единица измерения в СИ:** <u>**м/с²**</u> (метр в секунду в квадрате).\n\n---\n\n### 4. Основные формулы равноускоренного движения\n\n1. **Скорость в любой момент времени:**\n   * В векторном виде:\n   $$\\\\vec{v} = \\\\vec{v}_0 + \\\\vec{a}t$$\n   * В проекции на координатную ось $Ox$:\n   $$\\\\underline{\\\\mathbf{v_x = v_{0x} + a_x t}}$$\n\n2. **Проекция перемещения:**\n   * Основная формула:\n   $$\\\\underline{\\\\mathbf{s_x = v_{0x}t + \\\\frac{a_x t^2}{2}}}$$\n   * Формула без времени (связь скорости и пути):\n   $$\\\\underline{\\\\mathbf{s_x = \\\\frac{v_x^2 - v_{0x}^2}{2a_x}}}$$\n   * Через начальную и конечную скорости:\n   $$s_x = \\\\frac{v_{0x} + v_x}{2} \\\\cdot t$$\n\n3. **Координата тела в любой момент времени (закон движения):**\n   $$\\\\underline{\\\\mathbf{x(t) = x_0 + v_{0x}t + \\\\frac{a_x t^2}{2}}}$$\n\n---\n\n### 5. Геометрический смысл перемещения\n\n* На графике зависимости проекции скорости от времени $v_x(t)$:\n  * <u>**Площадь фигуры под графиком**</u> (прямоугольника при равномерном движении, трапеции или треугольника при равноускоренном) численно равна модулю проекции перемещения тела:\n  $$|s_x| = S_{\\\\text{фигуры}}$$",
+          "topic": "Прямолинейное равномерное и равноускоренное движение. Кинематические уравнения движения."
         },
         {
           "num": 4,
@@ -1169,7 +1364,7 @@
     },
     {
       "date": "2026-09-10",
-      "date_display": "10 сентября 2026 (Четверг)",
+      "date_display": "10 сентября 2026 г. (Четверг)",
       "short_day": "10 сен",
       "weekday": "Чт",
       "week": 2,
@@ -1226,7 +1421,7 @@
     },
     {
       "date": "2026-09-11",
-      "date_display": "11 сентября 2026 (Пятница)",
+      "date_display": "11 сентября 2026 г. (Пятница)",
       "short_day": "11 сен",
       "weekday": "Пт",
       "week": 2,
@@ -1268,35 +1463,60 @@
   ]
 };
 
-    let currentWeekIndex = 1; // Default to current Week 2
-    let currentDate = '2026-09-08';
-    let activeLesson = null;
-    let currentView = 'rendered';
+    let currentWeekIndex = 1; // Default to Week 2
+    let currentDate = '2026-09-09';
+    let currentMode = 'schedule';
+    let selectedSubject = 'Все предметы';
 
     function init() {
-      const weekIdx = APP.weeks.findIndex(w => w.dates.includes(currentDate));
-      if (weekIdx !== -1) {
-        currentWeekIndex = weekIdx;
-      }
+      // Date Picker listener
+      const dateInput = document.getElementById('dateInput');
+      dateInput.addEventListener('change', (e) => {
+        selectDate(e.target.value);
+      });
+
+      // Keyboard Esc for modal
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeModal();
+      });
+
+      // Scroll listener for outline highlighting
+      window.addEventListener('scroll', updateActiveOutlineItem, { passive: true });
 
       updateWeekUI();
       renderTabs();
       renderDay(currentDate);
-
-      document.getElementById('dateInput').addEventListener('change', (e) => {
-        const val = e.target.value;
-        selectDate(val);
-      });
-
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeModal();
-        if (!document.getElementById('modalBackdrop').classList.contains('active')) {
-          if (e.key === 'ArrowLeft') changeWeek(-1);
-          if (e.key === 'ArrowRight') changeWeek(1);
-        }
-      });
+      initSubjectFilterBar();
+      renderSubjectsView();
     }
 
+    // ==========================================
+    // View Mode Switching
+    // ==========================================
+    function switchViewMode(mode) {
+      currentMode = mode;
+      const btnSchedule = document.getElementById('btnModeSchedule');
+      const btnSubjects = document.getElementById('btnModeSubjects');
+      const viewSchedule = document.getElementById('viewSchedule');
+      const viewSubjects = document.getElementById('viewSubjects');
+
+      if (mode === 'schedule') {
+        btnSchedule.classList.add('active');
+        btnSubjects.classList.remove('active');
+        viewSchedule.style.display = 'block';
+        viewSubjects.classList.remove('active');
+      } else {
+        btnSchedule.classList.remove('active');
+        btnSubjects.classList.add('active');
+        viewSchedule.style.display = 'none';
+        viewSubjects.classList.add('active');
+        renderSubjectsView();
+      }
+    }
+
+    // ==========================================
+    // Daily Schedule View
+    // ==========================================
     function changeWeek(delta) {
       const newIndex = currentWeekIndex + delta;
       if (newIndex < 0 || newIndex >= APP.weeks.length) return;
@@ -1380,8 +1600,8 @@
                 <span class="lesson-subject">${l.subject}</span>
                 ${(l.room || l.teacher) ? `
                   <div class="lesson-meta">
-                    ${l.room ? `<span>📍 ${l.room}</span>` : ''}
-                    ${l.teacher ? `<span>👤 ${l.teacher}</span>` : ''}
+                    ${l.room ? `<span>${l.room}</span>` : ''}
+                    ${l.teacher ? `<span>${l.teacher}</span>` : ''}
                   </div>
                 ` : ''}
                 ${l.topic ? `<div class="lesson-topic">${l.topic}</div>` : ''}
@@ -1390,7 +1610,7 @@
             ${l.has_notes ? `
               <div class="lesson-actions">
                 <button class="btn-notes" onclick="openNotes('${dayData.date}', ${l.num})">
-                  📝 Открыть конспект
+                  Открыть конспект
                 </button>
               </div>
             ` : ''}
@@ -1399,7 +1619,214 @@
       }).join('');
     }
 
-    function renderMarkdown(md) {
+    // ==========================================
+    // By Subject View with Google Docs Outline
+    // ==========================================
+    const SUBJECT_CATEGORIES = [
+      'Все предметы',
+      'Математика',
+      'Физика',
+      'Литература',
+      'География',
+      'Русский язык'
+    ];
+
+    function initSubjectFilterBar() {
+      const container = document.getElementById('subjectFilterBar');
+      container.innerHTML = SUBJECT_CATEGORIES.map(cat => `
+        <button class="subject-pill ${cat === selectedSubject ? 'active' : ''}" onclick="selectSubjectFilter('${cat}')">
+          ${cat}
+        </button>
+      `).join('');
+    }
+
+    function selectSubjectFilter(cat) {
+      selectedSubject = cat;
+      initSubjectFilterBar();
+      renderSubjectsView();
+    }
+
+    function normalizeSubject(name) {
+      if (!name) return '';
+      if (name.includes('Математика') || name.includes('Алгебра')) return 'Математика';
+      if (name.includes('Физика')) return 'Физика';
+      if (name.includes('Литература')) return 'Литература';
+      if (name.includes('География')) return 'География';
+      if (name.includes('Русский')) return 'Русский язык';
+      return name;
+    }
+
+    function getAllNotesList() {
+      const notesList = [];
+      const seenFiles = new Set();
+
+      APP.days.forEach(d => {
+        d.lessons.forEach(l => {
+          if (l.has_notes && l.notes_md && l.notes_file && !seenFiles.has(l.notes_file)) {
+            seenFiles.add(l.notes_file);
+            notesList.push({
+              date: d.date,
+              date_display: d.date_display,
+              lesson: l,
+              category: normalizeSubject(l.subject)
+            });
+          }
+        });
+      });
+
+      // Chronological sort
+      notesList.sort((a, b) => a.date.localeCompare(b.date));
+      return notesList;
+    }
+
+    // Parse sub-sections from note markdown for outline
+    function extractHeadings(md, baseId) {
+      const headings = [];
+      const lines = md.split('\n');
+      let idx = 0;
+      for (const line of lines) {
+        const m = line.match(/^(#{2,4})\s+(.+)$/);
+        if (m) {
+          const level = m[1].length;
+          let title = m[2].trim();
+          if (title.includes('ТЕМА УРОКА')) continue;
+          title = title.replace(/<[^>]+>/g, '').replace(/\*\*/g, '').replace(/\*/g, '').trim();
+          idx++;
+          headings.push({
+            id: `${baseId}-h${idx}`,
+            level: level,
+            title: title
+          });
+        }
+      }
+      return headings;
+    }
+
+    function renderSubjectsView() {
+      const allNotes = getAllNotesList();
+      const filtered = (selectedSubject === 'Все предметы')
+        ? allNotes
+        : allNotes.filter(n => n.category === selectedSubject);
+
+      const contentEl = document.getElementById('subjectsContent');
+      const outlineEl = document.getElementById('outlineNav');
+
+      if (filtered.length === 0) {
+        contentEl.innerHTML = `
+          <div style="background:white; border-radius:16px; padding:48px; text-align:center; color:#64748b; border:1px dashed #cbd5e1;">
+            По выбранному предмету конспектов пока нет.
+          </div>
+        `;
+        outlineEl.innerHTML = `<li class="outline-item" style="color:#94a3b8; padding:8px;">Нет записей</li>`;
+        return;
+      }
+
+      let contentHtml = '';
+      let outlineHtml = '';
+      let lastDate = '';
+
+      filtered.forEach((item, index) => {
+        const cardId = `note-card-${item.date}-${index}`;
+
+        // Date Divider Ribbon
+        if (item.date !== lastDate) {
+          lastDate = item.date;
+          const dateAnchor = `date-divider-${item.date}`;
+          contentHtml += `
+            <div class="date-divider" id="${dateAnchor}">
+              <div class="date-divider-line"></div>
+              <div class="date-divider-badge">${item.date_display}</div>
+              <div class="date-divider-line"></div>
+            </div>
+          `;
+
+          outlineHtml += `
+            <li class="outline-item">
+              <a class="outline-link level-date" href="#${dateAnchor}" onclick="scrollToElement('${dateAnchor}', event)">
+                ${item.date_display.split('(')[0].trim()}
+              </a>
+            </li>
+          `;
+        }
+
+        // Render card
+        contentHtml += `
+          <article class="subject-note-card" id="${cardId}">
+            <div class="subject-note-header">
+              <div class="subject-note-header-left">
+                <h3>${item.lesson.subject}</h3>
+                <div class="subject-note-meta">
+                  ${item.date_display} • ${item.lesson.time} ${item.lesson.room ? '• ' + item.lesson.room : ''} ${item.lesson.teacher ? '• ' + item.lesson.teacher : ''}
+                </div>
+              </div>
+            </div>
+            <div class="subject-note-body">
+              <div class="notes-rendered">${renderMarkdown(item.lesson.notes_md, cardId)}</div>
+            </div>
+          </article>
+        `;
+
+        // Outline: Topic Link
+        const topicLabel = item.lesson.topic || item.lesson.subject;
+        outlineHtml += `
+          <li class="outline-item">
+            <a class="outline-link level-topic" href="#${cardId}" onclick="scrollToElement('${cardId}', event)">
+              ${topicLabel.length > 38 ? topicLabel.substring(0, 36) + '...' : topicLabel}
+            </a>
+          </li>
+        `;
+
+        // Outline: Sub-headings extracted from note
+        const subHeadings = extractHeadings(item.lesson.notes_md, cardId);
+        subHeadings.forEach(h => {
+          outlineHtml += `
+            <li class="outline-item">
+              <a class="outline-link level-sub" href="#${h.id}" onclick="scrollToElement('${h.id}', event)">
+                ${h.title.length > 34 ? h.title.substring(0, 32) + '...' : h.title}
+              </a>
+            </li>
+          `;
+        });
+      });
+
+      contentEl.innerHTML = contentHtml;
+      outlineEl.innerHTML = outlineHtml;
+    }
+
+    function scrollToElement(id, e) {
+      if (e) e.preventDefault();
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    function updateActiveOutlineItem() {
+      if (currentMode !== 'subjects') return;
+      const links = document.querySelectorAll('.docs-outline .outline-link');
+      if (!links.length) return;
+
+      const fromTop = window.scrollY + 120;
+      let currentActive = null;
+
+      links.forEach(link => {
+        const targetId = link.getAttribute('href').replace('#', '');
+        const target = document.getElementById(targetId);
+        if (target && target.offsetTop <= fromTop) {
+          currentActive = link;
+        }
+      });
+
+      links.forEach(l => l.classList.remove('active'));
+      if (currentActive) {
+        currentActive.classList.add('active');
+      }
+    }
+
+    // ==========================================
+    // Markdown & KaTeX Engine with Heading Anchors
+    // ==========================================
+    function renderMarkdown(md, baseId = '') {
       if (!md) return '';
 
       const mathTokens = [];
@@ -1438,13 +1865,8 @@
         return token;
       });
 
-      // Parse markdown with marked.js if available
-      let html = '';
-      if (window.marked && typeof marked.parse === 'function') {
-        html = marked.parse(text, { breaks: true, gfm: true });
-      } else {
-        html = parseMarkdownFallback(text);
-      }
+      // Parse with fallback/custom renderer with IDs for headings
+      let html = parseMarkdownWithAnchors(text, baseId);
 
       // Restore math tokens
       for (const item of mathTokens) {
@@ -1455,10 +1877,11 @@
       return html;
     }
 
-    function parseMarkdownFallback(md) {
+    function parseMarkdownWithAnchors(md, baseId) {
       let lines = md.split('\n');
       let html = '';
       let inList = false;
+      let headingIndex = 0;
 
       for (let i = 0; i < lines.length; i++) {
         let line = lines[i];
@@ -1476,12 +1899,24 @@
         }
         if (line.startsWith('### ')) {
           if (inList) { html += '</ul>'; inList = false; }
-          html += '<h3>' + formatInline(line.substring(4)) + '</h3>';
+          const title = line.substring(4);
+          let idAttr = '';
+          if (baseId && !title.includes('ТЕМА УРОКА')) {
+            headingIndex++;
+            idAttr = ` id="${baseId}-h${headingIndex}" style="scroll-margin-top: 24px;"`;
+          }
+          html += `<h3${idAttr}>` + formatInline(title) + '</h3>';
           continue;
         }
         if (line.startsWith('#### ')) {
           if (inList) { html += '</ul>'; inList = false; }
-          html += '<h4>' + formatInline(line.substring(5)) + '</h4>';
+          const title = line.substring(5);
+          let idAttr = '';
+          if (baseId && !title.includes('ТЕМА УРОКА')) {
+            headingIndex++;
+            idAttr = ` id="${baseId}-h${headingIndex}" style="scroll-margin-top: 24px;"`;
+          }
+          html += `<h4${idAttr}>` + formatInline(title) + '</h4>';
           continue;
         }
 
@@ -1515,71 +1950,26 @@
         .replace(/`([^`]+)`/g, '<code style="background:#e2e8f0; padding:2px 6px; border-radius:4px; font-size:0.9em;">$1</code>');
     }
 
+    // ==========================================
+    // Fullscreen Modal
+    // ==========================================
     function openNotes(date, num) {
       const day = APP.days.find(d => d.date === date);
       if (!day) return;
       const lesson = day.lessons.find(l => l.num === num);
       if (!lesson || !lesson.has_notes) return;
 
-      activeLesson = lesson;
-
       document.getElementById('modalSubject').textContent = lesson.subject;
-      document.getElementById('modalMeta').textContent = `${day.date_display} • ${lesson.time} • ${lesson.room || ''} • ${lesson.teacher || ''}`;
-      document.getElementById('modalFileLabel').textContent = `Файл: ${lesson.notes_file}`;
-
+      document.getElementById('modalMeta').textContent = `${day.date_display} • ${lesson.time} ${lesson.room ? '• ' + lesson.room : ''} ${lesson.teacher ? '• ' + lesson.teacher : ''}`;
       document.getElementById('modalNotesRendered').innerHTML = renderMarkdown(lesson.notes_md);
-      document.getElementById('modalNotesRaw').textContent = lesson.notes_md;
-
-      switchView('rendered');
-
-      const blob = new Blob([lesson.notes_md], { type: 'text/markdown;charset=utf-8' });
-      const downloadBtn = document.getElementById('modalDownloadBtn');
-      downloadBtn.href = URL.createObjectURL(blob);
-      downloadBtn.download = lesson.notes_file.split('/').pop();
 
       document.getElementById('modalBackdrop').classList.add('active');
       document.body.style.overflow = 'hidden';
     }
 
-    function switchView(view) {
-      currentView = view;
-      const renderedEl = document.getElementById('modalNotesRendered');
-      const rawEl = document.getElementById('modalNotesRaw');
-      const btnRendered = document.getElementById('btnViewRendered');
-      const btnRaw = document.getElementById('btnViewRaw');
-
-      if (view === 'rendered') {
-        renderedEl.style.display = 'block';
-        rawEl.style.display = 'none';
-        btnRendered.classList.add('active');
-        btnRaw.classList.remove('active');
-      } else {
-        renderedEl.style.display = 'none';
-        rawEl.style.display = 'block';
-        btnRendered.classList.remove('active');
-        btnRaw.classList.add('active');
-      }
-    }
-
     function closeModal() {
       document.getElementById('modalBackdrop').classList.remove('active');
       document.body.style.overflow = '';
-    }
-
-    function copyNotes() {
-      if (!activeLesson) return;
-      navigator.clipboard.writeText(activeLesson.notes_md).then(() => {
-        showToast('Конспект (.md) скопирован в буфер!');
-      }).catch(() => {
-        showToast('Ошибка при копировании');
-      });
-    }
-
-    function showToast(msg) {
-      const t = document.getElementById('toast');
-      t.textContent = msg;
-      t.style.display = 'block';
-      setTimeout(() => { t.style.display = 'none'; }, 2000);
     }
 
     window.onload = init;

@@ -1466,27 +1466,16 @@ html_template = """<!DOCTYPE html>
           </article>
         `;
 
-        // Outline: Topic Link
+        // Outline: Only main topic link (no sub-topics)
         const topicLabel = item.lesson.topic || item.lesson.subject;
+        const subjectPrefix = (selectedSubject === 'Все предметы') ? `<strong>${item.category}:</strong> ` : '';
         outlineHtml += `
           <li class="outline-item">
             <a class="outline-link level-topic" href="#${cardId}" onclick="scrollToElement('${cardId}', event)">
-              ${topicLabel.length > 38 ? topicLabel.substring(0, 36) + '...' : topicLabel}
+              ${subjectPrefix}${topicLabel}
             </a>
           </li>
         `;
-
-        // Outline: Sub-headings extracted from note
-        const subHeadings = extractHeadings(item.lesson.notes_md, cardId);
-        subHeadings.forEach(h => {
-          outlineHtml += `
-            <li class="outline-item">
-              <a class="outline-link level-sub" href="#${h.id}" onclick="scrollToElement('${h.id}', event)">
-                ${h.title.length > 34 ? h.title.substring(0, 32) + '...' : h.title}
-              </a>
-            </li>
-          `;
-        });
       });
 
       contentEl.innerHTML = contentHtml;

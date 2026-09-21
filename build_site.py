@@ -40,6 +40,12 @@ schedule_data = {
             "title": "Неделя 3",
             "range": "14 сен — 19 сен 2026",
             "dates": ["2026-09-14", "2026-09-15", "2026-09-16", "2026-09-17", "2026-09-18", "2026-09-19"]
+        },
+        {
+            "id": 4,
+            "title": "Неделя 4",
+            "range": "21 сен — 26 сен 2026",
+            "dates": ["2026-09-21", "2026-09-22", "2026-09-23", "2026-09-24", "2026-09-25", "2026-09-26"]
         }
     ],
     "days": [
@@ -283,7 +289,9 @@ schedule_data = {
                 {"num": 1, "time": "08:30 – 10:00", "subject": "—", "room": "", "teacher": "", "has_notes": False},
                 {"num": 2, "time": "10:10 – 11:40", "subject": "—", "room": "", "teacher": "", "has_notes": False},
                 {"num": 3, "time": "12:10 – 13:40", "subject": "—", "room": "", "teacher": "", "has_notes": False},
-                {"num": 4, "time": "14:00 – 15:30", "subject": "—", "room": "", "teacher": "", "has_notes": False}
+                {"num": 4, "time": "14:00 – 15:30", "subject": "Биология", "room": "каб. 305", "teacher": "Валеева А.Р.", "has_notes": False},
+                {"num": 5, "time": "15:40 – 17:10", "subject": "Русский язык", "room": "каб. 203", "teacher": "Галавова Г.В.", "has_notes": False},
+                {"num": 6, "time": "17:20 – 18:50", "subject": "Литература", "room": "каб. 203", "teacher": "Галавова Г.В.", "has_notes": False}
             ]
         },
         {
@@ -293,10 +301,10 @@ schedule_data = {
             "weekday": "Вт",
             "week": 3,
             "lessons": [
-                {"num": 1, "time": "08:30 – 10:00", "subject": "—", "room": "", "teacher": "", "has_notes": False},
-                {"num": 2, "time": "10:10 – 11:40", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {"num": 1, "time": "08:30 – 10:00", "subject": "Математика", "room": "каб. 201", "teacher": "Садыкова Р.З.", "has_notes": False},
+                {"num": 2, "time": "10:10 – 11:40", "subject": "Математика", "room": "каб. 201", "teacher": "Садыкова Р.З.", "has_notes": False},
                 {
-                    "num": 3, "time": "12:10 – 13:40", "subject": "География", "room": "каб. 307", "teacher": "Бахтина С.А.",
+                    "num": 3, "time": "12:10 – 13:40", "subject": "География", "room": "каб. 207", "teacher": "Бахтина С.А.",
                     "has_notes": True, "notes_file": "dist/notes/2026-09-15_География.md",
                     "notes_md": notes_map.get("2026-09-15_География.md", ""),
                     "topic": topics_map.get("2026-09-15_География.md", "")
@@ -311,9 +319,9 @@ schedule_data = {
             "weekday": "Ср",
             "week": 3,
             "lessons": [
-                {"num": 1, "time": "08:30 – 10:00", "subject": "—", "room": "", "teacher": "", "has_notes": False},
-                {"num": 2, "time": "10:10 – 11:40", "subject": "—", "room": "", "teacher": "", "has_notes": False},
-                {"num": 3, "time": "12:10 – 13:40", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {"num": 1, "time": "08:30 – 10:00", "subject": "Математика", "room": "каб. 303", "teacher": "Садыкова Р.З.", "has_notes": False},
+                {"num": 2, "time": "10:10 – 11:40", "subject": "Математика", "room": "каб. 303", "teacher": "Садыкова Р.З.", "has_notes": False},
+                {"num": 3, "time": "12:10 – 13:40", "subject": "Физика", "room": "каб. 307", "teacher": "Кузнецова Е.С.", "has_notes": False},
                 {"num": 4, "time": "14:00 – 15:30", "subject": "—", "room": "", "teacher": "", "has_notes": False}
             ]
         },
@@ -354,15 +362,15 @@ schedule_data = {
             "weekday": "Пт",
             "week": 3,
             "lessons": [
-                {"num": 1, "time": "08:30 – 10:00", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {"num": 1, "time": "08:30 – 10:00", "subject": "Родная литература", "room": "библиотека", "teacher": "Демидова Л.А.", "has_notes": False},
                 {
-                    "num": 2, "time": "10:10 – 11:40", "subject": "Родная литература", "room": "каб. 203", "teacher": "Демидова Л.А.",
+                    "num": 2, "time": "10:10 – 11:40", "subject": "Родная литература", "room": "библиотека", "teacher": "Демидова Л.А.",
                     "has_notes": True, "notes_file": "dist/notes/2026-09-18_Родная_литература.md",
                     "notes_md": notes_map.get("2026-09-18_Родная_литература.md", ""),
                     "topic": topics_map.get("2026-09-18_Родная_литература.md", "")
                 },
                 {
-                    "num": 3, "time": "12:10 – 13:40", "subject": "География", "room": "каб. 307", "teacher": "Бахтина С.А.",
+                    "num": 3, "time": "12:10 – 13:40", "subject": "География", "room": "каб. 302", "teacher": "Бахтина С.А.",
                     "has_notes": True, "notes_file": "dist/notes/2026-09-18_География.md",
                     "notes_md": notes_map.get("2026-09-18_География.md", ""),
                     "topic": topics_map.get("2026-09-18_География.md", "")
@@ -376,6 +384,92 @@ schedule_data = {
             "short_day": "19 сен",
             "weekday": "Сб",
             "week": 3,
+            "lessons": [
+                {"num": 1, "time": "08:30 – 09:50", "subject": "Родная литература", "room": "каб. 203", "teacher": "Демидова Л.А.", "has_notes": False},
+                {"num": 2, "time": "10:00 – 11:20", "subject": "Родная литература", "room": "каб. 203", "teacher": "Демидова Л.А.", "has_notes": False},
+                {"num": 3, "time": "11:30 – 12:50", "subject": "География", "room": "каб. 311", "teacher": "Бахтина С.А.", "has_notes": False},
+                {"num": 4, "time": "13:00 – 14:20", "subject": "—", "room": "", "teacher": "", "has_notes": False}
+            ]
+        },
+
+        # WEEK 4
+        {
+            "date": "2026-09-21",
+            "date_display": "21 сентября 2026 г. (Понедельник)",
+            "short_day": "21 сен",
+            "weekday": "Пн",
+            "week": 4,
+            "lessons": [
+                {"num": 1, "time": "08:30 – 10:00", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {"num": 2, "time": "10:10 – 11:40", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {"num": 3, "time": "12:10 – 13:40", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {"num": 4, "time": "14:00 – 15:30", "subject": "Биология", "room": "библиотека", "teacher": "Валеева А.Р.", "has_notes": False},
+                {"num": 5, "time": "15:40 – 17:10", "subject": "Русский язык", "room": "каб. 203", "teacher": "Галавова Г.В.", "has_notes": False},
+                {"num": 6, "time": "17:20 – 18:50", "subject": "Литература", "room": "каб. 203", "teacher": "Галавова Г.В.", "has_notes": False}
+            ]
+        },
+        {
+            "date": "2026-09-22",
+            "date_display": "22 сентября 2026 г. (Вторник)",
+            "short_day": "22 сен",
+            "weekday": "Вт",
+            "week": 4,
+            "lessons": [
+                {"num": 1, "time": "08:30 – 10:00", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {"num": 2, "time": "10:10 – 11:40", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {"num": 3, "time": "12:10 – 13:40", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {"num": 4, "time": "14:00 – 15:30", "subject": "География", "room": "каб. 303", "teacher": "Бахтина С.А.", "has_notes": False},
+                {"num": 5, "time": "15:40 – 17:10", "subject": "История", "room": "каб. 207", "teacher": "Попова А.А.", "has_notes": False},
+                {"num": 6, "time": "17:20 – 18:50", "subject": "История", "room": "каб. 207", "teacher": "Попова А.А.", "has_notes": False}
+            ]
+        },
+        {
+            "date": "2026-09-23",
+            "date_display": "23 сентября 2026 г. (Среда)",
+            "short_day": "23 сен",
+            "weekday": "Ср",
+            "week": 4,
+            "lessons": [
+                {"num": 1, "time": "08:30 – 10:00", "subject": "География", "room": "каб. 305", "teacher": "Бахтина С.А.", "has_notes": False},
+                {"num": 2, "time": "10:10 – 11:40", "subject": "Английский язык", "room": "каб. 206/221", "teacher": "Хакимова Г.Р. / Гилазова", "has_notes": False},
+                {"num": 3, "time": "12:10 – 13:40", "subject": "Информатика", "room": "каб. 301", "teacher": "Алиева Э.Р.", "has_notes": False},
+                {"num": 4, "time": "14:00 – 15:30", "subject": "Информатика", "room": "каб. 301", "teacher": "Алиева Э.Р.", "has_notes": False}
+            ]
+        },
+        {
+            "date": "2026-09-24",
+            "date_display": "24 сентября 2026 г. (Четверг)",
+            "short_day": "24 сен",
+            "weekday": "Чт",
+            "week": 4,
+            "lessons": [
+                {"num": 1, "time": "08:30 – 10:00", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {"num": 2, "time": "10:10 – 11:40", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {"num": 3, "time": "12:10 – 13:40", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {"num": 4, "time": "14:00 – 15:30", "subject": "Математика", "room": "каб. 303", "teacher": "Садыкова Р.З.", "has_notes": False},
+                {"num": 5, "time": "15:40 – 17:10", "subject": "Литература", "room": "каб. 203", "teacher": "Галавова Г.В.", "has_notes": False},
+                {"num": 6, "time": "17:20 – 18:50", "subject": "Биология", "room": "каб. 305", "teacher": "Валеева А.Р.", "has_notes": False}
+            ]
+        },
+        {
+            "date": "2026-09-25",
+            "date_display": "25 сентября 2026 г. (Пятница)",
+            "short_day": "25 сен",
+            "weekday": "Пт",
+            "week": 4,
+            "lessons": [
+                {"num": 1, "time": "08:30 – 10:00", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {"num": 2, "time": "10:10 – 11:40", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {"num": 3, "time": "12:10 – 13:40", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {"num": 4, "time": "14:00 – 15:30", "subject": "—", "room": "", "teacher": "", "has_notes": False}
+            ]
+        },
+        {
+            "date": "2026-09-26",
+            "date_display": "26 сентября 2026 г. (Суббота)",
+            "short_day": "26 сен",
+            "weekday": "Сб",
+            "week": 4,
             "lessons": [
                 {"num": 1, "time": "08:30 – 09:50", "subject": "—", "room": "", "teacher": "", "has_notes": False},
                 {"num": 2, "time": "10:00 – 11:20", "subject": "—", "room": "", "teacher": "", "has_notes": False},
@@ -1305,8 +1399,8 @@ html_template = """<!DOCTYPE html>
   <script>
     const APP = @@APP_DATA@@;
 
-    let currentWeekIndex = 2; // Default to Week 3
-    let currentDate = '2026-09-18';
+    let currentWeekIndex = 3; // Default to Week 4
+    let currentDate = '2026-09-21';
     let currentMode = 'schedule';
     let selectedSubject = 'Все предметы';
 

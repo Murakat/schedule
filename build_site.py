@@ -607,67 +607,6 @@ html_template = """<!DOCTYPE html>
     }
 
     /* Week Switcher */
-    .week-pill-bar {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 8px;
-      margin-bottom: 12px;
-      max-width: 860px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .week-pill-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 7px 14px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      background: #ffffff;
-      color: #334155;
-      font-size: 0.88rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-
-    .week-pill-btn:hover {
-      border-color: #93c5fd;
-      background: #f0f7ff;
-      color: var(--primary);
-    }
-
-    .week-pill-btn.active {
-      background: var(--primary);
-      border-color: var(--primary);
-      color: #ffffff;
-      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
-    }
-
-    .week-pill-dates {
-      font-size: 0.78rem;
-      font-weight: normal;
-      opacity: 0.82;
-    }
-
-    .week-pill-current-tag {
-      background: #10b981;
-      color: white;
-      font-size: 0.68rem;
-      font-weight: 700;
-      padding: 2px 6px;
-      border-radius: 9999px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .week-pill-btn.active .week-pill-current-tag {
-      background: #ffffff;
-      color: #059669;
-    }
-
     .week-nav-container {
       background: #ffffff;
       border: 1px solid var(--border);
@@ -1387,9 +1326,6 @@ html_template = """<!DOCTYPE html>
 
     <!-- VIEW 1: Daily Schedule -->
     <div id="viewSchedule">
-      <!-- Direct Week Selector Tabs -->
-      <div class="week-pill-bar" id="weekPillBar"></div>
-
       <!-- Week Navigation with 2 Arrows -->
       <div class="week-nav-container">
         <button class="week-btn" id="prevWeekBtn" onclick="changeWeek(-1)" title="Предыдущая неделя">
@@ -1536,35 +1472,6 @@ html_template = """<!DOCTYPE html>
       renderDay(currentDate);
     }
 
-    function setWeek(idx) {
-      if (idx < 0 || idx >= APP.weeks.length) return;
-      currentWeekIndex = idx;
-      const targetWeek = APP.weeks[currentWeekIndex];
-      if (!targetWeek.dates.includes(currentDate)) {
-        currentDate = targetWeek.dates[0];
-        document.getElementById('dateInput').value = currentDate;
-      }
-      updateWeekUI();
-      renderTabs();
-      renderDay(currentDate);
-    }
-
-    function renderWeekPills() {
-      const container = document.getElementById('weekPillBar');
-      if (!container) return;
-      container.innerHTML = APP.weeks.map((w, idx) => {
-        const isActive = (idx === currentWeekIndex);
-        const isCurrent = (w.id === 4);
-        return `
-          <button class="week-pill-btn ${isActive ? 'active' : ''}" onclick="setWeek(${idx})">
-            <span>${w.title}</span>
-            <span class="week-pill-dates">(${w.range.split('2026')[0].trim()})</span>
-            ${isCurrent ? '<span class="week-pill-current-tag">Текущая</span>' : ''}
-          </button>
-        `;
-      }).join('');
-    }
-
     function updateWeekUI() {
       const week = APP.weeks[currentWeekIndex];
       document.getElementById('weekName').textContent = week.title;
@@ -1572,8 +1479,6 @@ html_template = """<!DOCTYPE html>
       
       document.getElementById('prevWeekBtn').disabled = (currentWeekIndex === 0);
       document.getElementById('nextWeekBtn').disabled = (currentWeekIndex === APP.weeks.length - 1);
-
-      renderWeekPills();
     }
 
     function renderTabs() {

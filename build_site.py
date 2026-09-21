@@ -32,11 +32,18 @@ schedule_data = {
         {
             "id": 2,
             "title": "Неделя 2",
-            "range": "7 сен — 11 сен 2026",
-            "dates": ["2026-09-07", "2026-09-08", "2026-09-09", "2026-09-10", "2026-09-11"]
+            "range": "7 сен — 12 сен 2026",
+            "dates": ["2026-09-07", "2026-09-08", "2026-09-09", "2026-09-10", "2026-09-11", "2026-09-12"]
+        },
+        {
+            "id": 3,
+            "title": "Неделя 3",
+            "range": "14 сен — 19 сен 2026",
+            "dates": ["2026-09-14", "2026-09-15", "2026-09-16", "2026-09-17", "2026-09-18", "2026-09-19"]
         }
     ],
     "days": [
+        # WEEK 1
         {
             "date": "2026-08-31",
             "date_display": "31 августа 2026 г. (Понедельник)",
@@ -130,6 +137,8 @@ schedule_data = {
                 {"num": 4, "time": "13:00 – 14:20", "subject": "—", "room": "", "teacher": "", "has_notes": False}
             ]
         },
+
+        # WEEK 2
         {
             "date": "2026-09-07",
             "date_display": "7 сентября 2026 г. (Понедельник)",
@@ -243,6 +252,136 @@ schedule_data = {
                 {"num": 3, "time": "12:10 – 13:40", "subject": "—", "room": "", "teacher": "", "has_notes": False},
                 {"num": 4, "time": "14:00 – 15:30", "subject": "—", "room": "", "teacher": "", "has_notes": False}
             ]
+        },
+        {
+            "date": "2026-09-12",
+            "date_display": "12 сентября 2026 г. (Суббота)",
+            "short_day": "12 сен",
+            "weekday": "Сб",
+            "week": 2,
+            "lessons": [
+                {
+                    "num": 1, "time": "08:30 – 10:00", "subject": "Математика (Алгебра)", "room": "каб. 303", "teacher": "Садыкова Р.З.",
+                    "has_notes": True, "notes_file": "dist/notes/2026-09-12_Математика.md",
+                    "notes_md": notes_map.get("2026-09-12_Математика.md", ""),
+                    "topic": topics_map.get("2026-09-12_Математика.md", "")
+                },
+                {"num": 2, "time": "10:10 – 11:40", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {"num": 3, "time": "12:10 – 13:40", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {"num": 4, "time": "14:00 – 15:30", "subject": "—", "room": "", "teacher": "", "has_notes": False}
+            ]
+        },
+
+        # WEEK 3
+        {
+            "date": "2026-09-14",
+            "date_display": "14 сентября 2026 г. (Понедельник)",
+            "short_day": "14 сен",
+            "weekday": "Пн",
+            "week": 3,
+            "lessons": [
+                {"num": 1, "time": "08:30 – 10:00", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {"num": 2, "time": "10:10 – 11:40", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {"num": 3, "time": "12:10 – 13:40", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {"num": 4, "time": "14:00 – 15:30", "subject": "—", "room": "", "teacher": "", "has_notes": False}
+            ]
+        },
+        {
+            "date": "2026-09-15",
+            "date_display": "15 сентября 2026 г. (Вторник)",
+            "short_day": "15 сен",
+            "weekday": "Вт",
+            "week": 3,
+            "lessons": [
+                {"num": 1, "time": "08:30 – 10:00", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {"num": 2, "time": "10:10 – 11:40", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {
+                    "num": 3, "time": "12:10 – 13:40", "subject": "География", "room": "каб. 307", "teacher": "Бахтина С.А.",
+                    "has_notes": True, "notes_file": "dist/notes/2026-09-15_География.md",
+                    "notes_md": notes_map.get("2026-09-15_География.md", ""),
+                    "topic": topics_map.get("2026-09-15_География.md", "")
+                },
+                {"num": 4, "time": "14:00 – 15:30", "subject": "—", "room": "", "teacher": "", "has_notes": False}
+            ]
+        },
+        {
+            "date": "2026-09-16",
+            "date_display": "16 сентября 2026 г. (Среда)",
+            "short_day": "16 сен",
+            "weekday": "Ср",
+            "week": 3,
+            "lessons": [
+                {"num": 1, "time": "08:30 – 10:00", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {"num": 2, "time": "10:10 – 11:40", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {"num": 3, "time": "12:10 – 13:40", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {"num": 4, "time": "14:00 – 15:30", "subject": "—", "room": "", "teacher": "", "has_notes": False}
+            ]
+        },
+        {
+            "date": "2026-09-17",
+            "date_display": "17 сентября 2026 г. (Четверг)",
+            "short_day": "17 сен",
+            "weekday": "Чт",
+            "week": 3,
+            "lessons": [
+                {"num": 1, "time": "08:30 – 10:00", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {"num": 2, "time": "10:10 – 11:40", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {"num": 3, "time": "12:10 – 13:40", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {
+                    "num": 4, "time": "14:00 – 15:30", "subject": "Биология", "room": "каб. 305", "teacher": "Валеева А.Р.",
+                    "has_notes": True, "notes_file": "dist/notes/2026-09-17_Биология.md",
+                    "notes_md": notes_map.get("2026-09-17_Биология.md", ""),
+                    "topic": topics_map.get("2026-09-17_Биология.md", "")
+                },
+                {
+                    "num": 5, "time": "15:40 – 17:10", "subject": "Биология", "room": "каб. 305", "teacher": "Валеева А.Р.",
+                    "has_notes": True, "notes_file": "dist/notes/2026-09-17_Биология.md",
+                    "notes_md": notes_map.get("2026-09-17_Биология.md", ""),
+                    "topic": topics_map.get("2026-09-17_Биология.md", "")
+                },
+                {
+                    "num": 6, "time": "17:20 – 18:50", "subject": "Литература", "room": "каб. 203", "teacher": "Галавова Г.В.",
+                    "has_notes": True, "notes_file": "dist/notes/2026-09-17_Литература.md",
+                    "notes_md": notes_map.get("2026-09-17_Литература.md", ""),
+                    "topic": topics_map.get("2026-09-17_Литература.md", "")
+                }
+            ]
+        },
+        {
+            "date": "2026-09-18",
+            "date_display": "18 сентября 2026 г. (Пятница)",
+            "short_day": "18 сен",
+            "weekday": "Пт",
+            "week": 3,
+            "lessons": [
+                {"num": 1, "time": "08:30 – 10:00", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {
+                    "num": 2, "time": "10:10 – 11:40", "subject": "Родная литература", "room": "каб. 203", "teacher": "Демидова Л.А.",
+                    "has_notes": True, "notes_file": "dist/notes/2026-09-18_Родная_литература.md",
+                    "notes_md": notes_map.get("2026-09-18_Родная_литература.md", ""),
+                    "topic": topics_map.get("2026-09-18_Родная_литература.md", "")
+                },
+                {
+                    "num": 3, "time": "12:10 – 13:40", "subject": "География", "room": "каб. 307", "teacher": "Бахтина С.А.",
+                    "has_notes": True, "notes_file": "dist/notes/2026-09-18_География.md",
+                    "notes_md": notes_map.get("2026-09-18_География.md", ""),
+                    "topic": topics_map.get("2026-09-18_География.md", "")
+                },
+                {"num": 4, "time": "14:00 – 15:30", "subject": "—", "room": "", "teacher": "", "has_notes": False}
+            ]
+        },
+        {
+            "date": "2026-09-19",
+            "date_display": "19 сентября 2026 г. (Суббота)",
+            "short_day": "19 сен",
+            "weekday": "Сб",
+            "week": 3,
+            "lessons": [
+                {"num": 1, "time": "08:30 – 09:50", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {"num": 2, "time": "10:00 – 11:20", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {"num": 3, "time": "11:30 – 12:50", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {"num": 4, "time": "13:00 – 14:20", "subject": "—", "room": "", "teacher": "", "has_notes": False}
+            ]
         }
     ]
 }
@@ -298,7 +437,7 @@ html_template = """<!DOCTYPE html>
     }
 
     .container {
-      max-width: 1160px;
+      max-width: 1180px;
       margin: 0 auto;
     }
 
@@ -794,19 +933,19 @@ html_template = """<!DOCTYPE html>
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: 4px;
     }
 
     .outline-item {
-      font-size: 0.86rem;
-      line-height: 1.35;
+      font-size: 0.88rem;
+      line-height: 1.4;
     }
 
     .outline-link {
       display: block;
-      padding: 5px 8px;
-      border-radius: 6px;
-      color: #475569;
+      padding: 6px 10px;
+      border-radius: 8px;
+      color: #334155;
       text-decoration: none;
       transition: all 0.15s ease;
       cursor: pointer;
@@ -824,23 +963,26 @@ html_template = """<!DOCTYPE html>
     }
 
     .outline-link.level-date {
-      font-weight: 700;
+      font-weight: 800;
       color: #0f172a;
-      padding-top: 8px;
-      font-size: 0.88rem;
+      padding-top: 10px;
+      font-size: 0.92rem;
+      border-top: 1px solid #f1f5f9;
+      margin-top: 4px;
+    }
+
+    .outline-item:first-child .outline-link.level-date {
+      border-top: none;
+      margin-top: 0;
+      padding-top: 4px;
     }
 
     .outline-link.level-topic {
       padding-left: 12px;
-      font-weight: 600;
-      color: #1e3a8a;
-      font-size: 0.84rem;
-    }
-
-    .outline-link.level-sub {
-      padding-left: 22px;
-      font-size: 0.8rem;
-      color: #64748b;
+      font-weight: 500;
+      color: #1e40af;
+      font-size: 0.86rem;
+      line-height: 1.45;
     }
 
     /* ========================================================= */
@@ -1097,10 +1239,10 @@ html_template = """<!DOCTYPE html>
 
         <div class="week-info">
           <div class="week-title-text" id="weekTitle">
-            <span id="weekName">Неделя 2</span>
+            <span id="weekName">Неделя 3</span>
             <span class="week-badge" id="weekBadge">2026</span>
           </div>
-          <div class="week-subtitle-text" id="weekDates">7 сен — 11 сен 2026</div>
+          <div class="week-subtitle-text" id="weekDates">14 сен — 19 сен 2026</div>
         </div>
 
         <button class="week-btn" id="nextWeekBtn" onclick="changeWeek(1)" title="Следующая неделя">
@@ -1115,7 +1257,7 @@ html_template = """<!DOCTYPE html>
 
       <div class="day-header">
         <div class="current-day-title" id="dayTitle">Загрузка...</div>
-        <input type="date" id="dateInput" class="date-picker" value="2026-09-09">
+        <input type="date" id="dateInput" class="date-picker" value="2026-09-18">
       </div>
 
       <div class="lessons-list" id="lessonsList"></div>
@@ -1163,8 +1305,8 @@ html_template = """<!DOCTYPE html>
   <script>
     const APP = @@APP_DATA@@;
 
-    let currentWeekIndex = 1; // Default to Week 2
-    let currentDate = '2026-09-09';
+    let currentWeekIndex = 2; // Default to Week 3
+    let currentDate = '2026-09-18';
     let currentMode = 'schedule';
     let selectedSubject = 'Все предметы';
 
@@ -1326,8 +1468,10 @@ html_template = """<!DOCTYPE html>
       'Все предметы',
       'Математика',
       'Физика',
-      'Литература',
+      'Биология',
       'География',
+      'Литература',
+      'Родная литература',
       'Русский язык'
     ];
 
@@ -1350,6 +1494,8 @@ html_template = """<!DOCTYPE html>
       if (!name) return '';
       if (name.includes('Математика') || name.includes('Алгебра')) return 'Математика';
       if (name.includes('Физика')) return 'Физика';
+      if (name.includes('Биология')) return 'Биология';
+      if (name.includes('Родная литература')) return 'Родная литература';
       if (name.includes('Литература')) return 'Литература';
       if (name.includes('География')) return 'География';
       if (name.includes('Русский')) return 'Русский язык';
@@ -1377,29 +1523,6 @@ html_template = """<!DOCTYPE html>
       // Chronological sort
       notesList.sort((a, b) => a.date.localeCompare(b.date));
       return notesList;
-    }
-
-    // Parse sub-sections from note markdown for outline
-    function extractHeadings(md, baseId) {
-      const headings = [];
-      const lines = md.split('\\n');
-      let idx = 0;
-      for (const line of lines) {
-        const m = line.match(/^(#{2,4})\\s+(.+)$/);
-        if (m) {
-          const level = m[1].length;
-          let title = m[2].trim();
-          if (title.includes('ТЕМА УРОКА')) continue;
-          title = title.replace(/<[^>]+>/g, '').replace(/\\*\\*/g, '').replace(/\\*/g, '').trim();
-          idx++;
-          headings.push({
-            id: `${baseId}-h${idx}`,
-            level: level,
-            title: title
-          });
-        }
-      }
-      return headings;
     }
 
     function renderSubjectsView() {
@@ -1466,7 +1589,7 @@ html_template = """<!DOCTYPE html>
           </article>
         `;
 
-        // Outline: Only main topic link (no sub-topics)
+        // Outline: Only main topic link (no subtopics)
         const topicLabel = item.lesson.topic || item.lesson.subject;
         const subjectPrefix = (selectedSubject === 'Все предметы') ? `<strong>${item.category}:</strong> ` : '';
         outlineHtml += `
@@ -1676,4 +1799,4 @@ os.makedirs("html", exist_ok=True)
 with open("html/index.html", "w", encoding="utf-8") as f:
     f.write(full_html)
 
-print("Successfully regenerated index.html and html/index.html with heading anchors and Google Docs outline!")
+print("Successfully generated index.html and html/index.html with all 3 weeks and 16 notes!")

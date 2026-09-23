@@ -137,7 +137,12 @@ schedule_data = {
             "weekday": "Сб",
             "week": 1,
             "lessons": [
-                {"num": 1, "time": "08:30 – 09:50", "subject": "Родная литература", "room": "каб. 203", "teacher": "Демидова Л.А.", "has_notes": False},
+                {
+                    "num": 1, "time": "08:30 – 09:50", "subject": "Родная литература", "room": "каб. 203", "teacher": "Демидова Л.А.",
+                    "has_notes": True, "notes_file": "dist/notes/2026-09-05_Родная_литература.md",
+                    "notes_md": notes_map.get("2026-09-05_Родная_литература.md", ""),
+                    "topic": topics_map.get("2026-09-05_Родная_литература.md", "")
+                },
                 {"num": 2, "time": "10:00 – 11:20", "subject": "Информатика", "room": "каб. 401", "teacher": "Алиева Э.Р.", "has_notes": False},
                 {"num": 3, "time": "11:30 – 12:50", "subject": "Информатика", "room": "каб. 401", "teacher": "Алиева Э.Р.", "has_notes": False},
                 {"num": 4, "time": "13:00 – 14:20", "subject": "—", "room": "", "teacher": "", "has_notes": False}
@@ -1408,7 +1413,7 @@ html_template = """<!DOCTYPE html>
         <div class="modal-meta" id="modalMeta">Дата • Время • Кабинет • Преподаватель</div>
       </div>
       <button class="btn-close-fullscreen" onclick="closeModal()" title="Закрыть (Esc)">
-        ✕ Закрыть
+        &times; Закрыть
       </button>
     </div>
 
@@ -1416,7 +1421,7 @@ html_template = """<!DOCTYPE html>
       <div class="modal-content-container">
         <div class="notes-rendered" id="modalNotesRendered"></div>
         <div style="text-align: center; margin-top: 48px; padding-top: 24px; border-top: 1px solid #e2e8f0;">
-          <button class="btn-close-fullscreen" onclick="closeModal()">✕ Закрыть конспект</button>
+          <button class="btn-close-fullscreen" onclick="closeModal()">&times; Закрыть конспект</button>
         </div>
       </div>
     </div>

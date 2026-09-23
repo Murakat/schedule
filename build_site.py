@@ -408,9 +408,24 @@ schedule_data = {
                 {"num": 1, "time": "08:30 – 10:00", "subject": "—", "room": "", "teacher": "", "has_notes": False},
                 {"num": 2, "time": "10:10 – 11:40", "subject": "—", "room": "", "teacher": "", "has_notes": False},
                 {"num": 3, "time": "12:10 – 13:40", "subject": "—", "room": "", "teacher": "", "has_notes": False},
-                {"num": 4, "time": "14:00 – 15:30", "subject": "Биология", "room": "библиотека", "teacher": "Валеева А.Р.", "has_notes": False},
-                {"num": 5, "time": "15:40 – 17:10", "subject": "Русский язык", "room": "каб. 203", "teacher": "Галавова Г.В.", "has_notes": False},
-                {"num": 6, "time": "17:20 – 18:50", "subject": "Литература", "room": "каб. 203", "teacher": "Галавова Г.В.", "has_notes": False}
+                {
+                    "num": 4, "time": "14:00 – 15:30", "subject": "Биология", "room": "библиотека", "teacher": "Валеева А.Р.",
+                    "has_notes": True, "notes_file": "dist/notes/2026-09-21_Биология.md",
+                    "notes_md": notes_map.get("2026-09-21_Биология.md", ""),
+                    "topic": topics_map.get("2026-09-21_Биология.md", "")
+                },
+                {
+                    "num": 5, "time": "15:40 – 17:10", "subject": "Русский язык", "room": "каб. 203", "teacher": "Галавова Г.В.",
+                    "has_notes": True, "notes_file": "dist/notes/2026-09-21_Русский_язык.md",
+                    "notes_md": notes_map.get("2026-09-21_Русский_язык.md", ""),
+                    "topic": topics_map.get("2026-09-21_Русский_язык.md", "")
+                },
+                {
+                    "num": 6, "time": "17:20 – 18:50", "subject": "Литература", "room": "каб. 203", "teacher": "Галавова Г.В.",
+                    "has_notes": True, "notes_file": "dist/notes/2026-09-21_Литература.md",
+                    "notes_md": notes_map.get("2026-09-21_Литература.md", ""),
+                    "topic": topics_map.get("2026-09-21_Литература.md", "")
+                }
             ]
         },
         {
@@ -423,9 +438,24 @@ schedule_data = {
                 {"num": 1, "time": "08:30 – 10:00", "subject": "—", "room": "", "teacher": "", "has_notes": False},
                 {"num": 2, "time": "10:10 – 11:40", "subject": "—", "room": "", "teacher": "", "has_notes": False},
                 {"num": 3, "time": "12:10 – 13:40", "subject": "—", "room": "", "teacher": "", "has_notes": False},
-                {"num": 4, "time": "14:00 – 15:30", "subject": "География", "room": "каб. 303", "teacher": "Бахтина С.А.", "has_notes": False},
-                {"num": 5, "time": "15:40 – 17:10", "subject": "История", "room": "каб. 207", "teacher": "Попова А.А.", "has_notes": False},
-                {"num": 6, "time": "17:20 – 18:50", "subject": "История", "room": "каб. 207", "teacher": "Попова А.А.", "has_notes": False}
+                {
+                    "num": 4, "time": "14:00 – 15:30", "subject": "География", "room": "каб. 303", "teacher": "Бахтина С.А.",
+                    "has_notes": True, "notes_file": "dist/notes/2026-09-22_География.md",
+                    "notes_md": notes_map.get("2026-09-22_География.md", ""),
+                    "topic": topics_map.get("2026-09-22_География.md", "")
+                },
+                {
+                    "num": 5, "time": "15:40 – 17:10", "subject": "История", "room": "каб. 207", "teacher": "Попова А.А.",
+                    "has_notes": True, "notes_file": "dist/notes/2026-09-22_История.md",
+                    "notes_md": notes_map.get("2026-09-22_История.md", ""),
+                    "topic": topics_map.get("2026-09-22_История.md", "")
+                },
+                {
+                    "num": 6, "time": "17:20 – 18:50", "subject": "История", "room": "каб. 207", "teacher": "Попова А.А.",
+                    "has_notes": True, "notes_file": "dist/notes/2026-09-22_История.md",
+                    "notes_md": notes_map.get("2026-09-22_История.md", ""),
+                    "topic": topics_map.get("2026-09-22_История.md", "")
+                }
             ]
         },
         {
@@ -435,10 +465,30 @@ schedule_data = {
             "weekday": "Ср",
             "week": 4,
             "lessons": [
-                {"num": 1, "time": "08:30 – 10:00", "subject": "География", "room": "каб. 305", "teacher": "Бахтина С.А.", "has_notes": False},
-                {"num": 2, "time": "10:10 – 11:40", "subject": "Английский язык", "room": "каб. 206/221", "teacher": "Хакимова Г.Р. / Гилазова", "has_notes": False},
-                {"num": 3, "time": "12:10 – 13:40", "subject": "Информатика", "room": "каб. 301", "teacher": "Алиева Э.Р.", "has_notes": False},
-                {"num": 4, "time": "14:00 – 15:30", "subject": "Информатика", "room": "каб. 301", "teacher": "Алиева Э.Р.", "has_notes": False}
+                {
+                    "num": 1, "time": "08:30 – 10:00", "subject": "География", "room": "каб. 305", "teacher": "Бахтина С.А.",
+                    "has_notes": True, "notes_file": "dist/notes/2026-09-23_География.md",
+                    "notes_md": notes_map.get("2026-09-23_География.md", ""),
+                    "topic": topics_map.get("2026-09-23_География.md", "")
+                },
+                {
+                    "num": 2, "time": "10:10 – 11:40", "subject": "Английский язык", "room": "каб. 206/221", "teacher": "Хакимова Г.Р. / Гилазова",
+                    "has_notes": True, "notes_file": "dist/notes/2026-09-23_Английский_язык.md",
+                    "notes_md": notes_map.get("2026-09-23_Английский_язык.md", ""),
+                    "topic": topics_map.get("2026-09-23_Английский_язык.md", "")
+                },
+                {
+                    "num": 3, "time": "12:10 – 13:40", "subject": "Информатика", "room": "каб. 301", "teacher": "Алиева Э.Р.",
+                    "has_notes": True, "notes_file": "dist/notes/2026-09-23_Информатика.md",
+                    "notes_md": notes_map.get("2026-09-23_Информатика.md", ""),
+                    "topic": topics_map.get("2026-09-23_Информатика.md", "")
+                },
+                {
+                    "num": 4, "time": "14:00 – 15:30", "subject": "Информатика", "room": "каб. 301", "teacher": "Алиева Э.Р.",
+                    "has_notes": True, "notes_file": "dist/notes/2026-09-23_Информатика.md",
+                    "notes_md": notes_map.get("2026-09-23_Информатика.md", ""),
+                    "topic": topics_map.get("2026-09-23_Информатика.md", "")
+                }
             ]
         },
         {

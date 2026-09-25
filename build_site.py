@@ -501,9 +501,19 @@ schedule_data = {
                 {"num": 1, "time": "08:30 – 10:00", "subject": "—", "room": "", "teacher": "", "has_notes": False},
                 {"num": 2, "time": "10:10 – 11:40", "subject": "—", "room": "", "teacher": "", "has_notes": False},
                 {"num": 3, "time": "12:10 – 13:40", "subject": "—", "room": "", "teacher": "", "has_notes": False},
-                {"num": 4, "time": "14:00 – 15:30", "subject": "Математика", "room": "каб. 303", "teacher": "Садыкова Р.З.", "has_notes": False},
-                {"num": 5, "time": "15:40 – 17:10", "subject": "Литература", "room": "каб. 203", "teacher": "Галавова Г.В.", "has_notes": False},
-                {"num": 6, "time": "17:20 – 18:50", "subject": "Биология", "room": "каб. 305", "teacher": "Валеева А.Р.", "has_notes": False}
+                {
+                    "num": 4, "time": "14:00 – 15:30", "subject": "Биология", "room": "каб. 305", "teacher": "Валеева А.Р.",
+                    "has_notes": True, "notes_file": "dist/notes/2026-09-24_Биология.md",
+                    "notes_md": notes_map.get("2026-09-24_Биология.md", ""),
+                    "topic": topics_map.get("2026-09-24_Биология.md", "")
+                },
+                {
+                    "num": 5, "time": "15:40 – 17:10", "subject": "Литература", "room": "каб. 203", "teacher": "Галавова Г.В.",
+                    "has_notes": True, "notes_file": "dist/notes/2026-09-24_Литература.md",
+                    "notes_md": notes_map.get("2026-09-24_Литература.md", ""),
+                    "topic": topics_map.get("2026-09-24_Литература.md", "")
+                },
+                {"num": 6, "time": "17:20 – 18:50", "subject": "—", "room": "", "teacher": "", "has_notes": False}
             ]
         },
         {
@@ -514,8 +524,18 @@ schedule_data = {
             "week": 4,
             "lessons": [
                 {"num": 1, "time": "08:30 – 10:00", "subject": "—", "room": "", "teacher": "", "has_notes": False},
-                {"num": 2, "time": "10:10 – 11:40", "subject": "—", "room": "", "teacher": "", "has_notes": False},
-                {"num": 3, "time": "12:10 – 13:40", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {
+                    "num": 2, "time": "10:10 – 11:40", "subject": "География", "room": "каб. 302", "teacher": "Бахтина С.А.",
+                    "has_notes": True, "notes_file": "dist/notes/2026-09-25_География.md",
+                    "notes_md": notes_map.get("2026-09-25_География.md", ""),
+                    "topic": topics_map.get("2026-09-25_География.md", "")
+                },
+                {
+                    "num": 3, "time": "12:10 – 13:40", "subject": "География", "room": "каб. 302", "teacher": "Бахтина С.А.",
+                    "has_notes": True, "notes_file": "dist/notes/2026-09-25_География.md",
+                    "notes_md": notes_map.get("2026-09-25_География.md", ""),
+                    "topic": topics_map.get("2026-09-25_География.md", "")
+                },
                 {"num": 4, "time": "14:00 – 15:30", "subject": "—", "room": "", "teacher": "", "has_notes": False}
             ]
         },

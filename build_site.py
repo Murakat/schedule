@@ -46,6 +46,12 @@ schedule_data = {
             "title": "Неделя 4",
             "range": "21 сен — 26 сен 2026",
             "dates": ["2026-09-21", "2026-09-22", "2026-09-23", "2026-09-24", "2026-09-25", "2026-09-26"]
+        },
+        {
+            "id": 5,
+            "title": "Неделя 5",
+            "range": "28 сен — 3 окт 2026",
+            "dates": ["2026-09-28", "2026-09-29", "2026-09-30", "2026-10-01", "2026-10-02", "2026-10-03"]
         }
     ],
     "days": [
@@ -545,6 +551,123 @@ schedule_data = {
             "short_day": "26 сен",
             "weekday": "Сб",
             "week": 4,
+            "lessons": [
+                {"num": 1, "time": "08:30 – 09:50", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {"num": 2, "time": "10:00 – 11:20", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {"num": 3, "time": "11:30 – 12:50", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {"num": 4, "time": "13:00 – 14:20", "subject": "—", "room": "", "teacher": "", "has_notes": False}
+            ]
+        },
+        {
+            "date": "2026-09-28",
+            "date_display": "28 сентября 2026 г. (Понедельник)",
+            "short_day": "28 сен",
+            "weekday": "Пн",
+            "week": 5,
+            "lessons": [
+                {"num": 1, "time": "08:30 – 10:00", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {"num": 2, "time": "10:10 – 11:40", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {"num": 3, "time": "12:10 – 13:40", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {"num": 4, "time": "14:00 – 15:30", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {
+                    "num": 5, "time": "15:40 – 17:10", "subject": "Русский язык", "room": "каб. 203", "teacher": "Галавова Г.В.",
+                    "has_notes": True, "notes_file": "dist/notes/2026-09-28_Русский_язык.md",
+                    "notes_md": notes_map.get("2026-09-28_Русский_язык.md", ""),
+                    "topic": topics_map.get("2026-09-28_Русский_язык.md", "")
+                },
+                {
+                    "num": 6, "time": "17:20 – 18:50", "subject": "Литература", "room": "каб. 203", "teacher": "Галавова Г.В.",
+                    "has_notes": True, "notes_file": "dist/notes/2026-09-28_Литература.md",
+                    "notes_md": notes_map.get("2026-09-28_Литература.md", ""),
+                    "topic": topics_map.get("2026-09-28_Литература.md", "")
+                }
+            ]
+        },
+        {
+            "date": "2026-09-29",
+            "date_display": "29 сентября 2026 г. (Вторник)",
+            "short_day": "29 сен",
+            "weekday": "Вт",
+            "week": 5,
+            "lessons": [
+                {
+                    "num": 1, "time": "08:30 – 10:00", "subject": "История", "room": "каб. 303", "teacher": "Садыкова Р.З. / Историк",
+                    "has_notes": True, "notes_file": "dist/notes/2026-09-29_История.md",
+                    "notes_md": notes_map.get("2026-09-29_История.md", ""),
+                    "topic": topics_map.get("2026-09-29_История.md", "")
+                },
+                {"num": 2, "time": "10:10 – 11:40", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {"num": 3, "time": "12:10 – 13:40", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {"num": 4, "time": "14:00 – 15:30", "subject": "—", "room": "", "teacher": "", "has_notes": False}
+            ]
+        },
+        {
+            "date": "2026-09-30",
+            "date_display": "30 сентября 2026 г. (Среда)",
+            "short_day": "30 сен",
+            "weekday": "Ср",
+            "week": 5,
+            "lessons": [
+                {"num": 1, "time": "08:30 – 10:00", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {"num": 2, "time": "10:10 – 11:40", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {
+                    "num": 3, "time": "12:10 – 13:40", "subject": "Физика", "room": "каб. 204", "teacher": "Кузнецова Е.С.",
+                    "has_notes": True, "notes_file": "dist/notes/2026-09-30_Физика.md",
+                    "notes_md": notes_map.get("2026-09-30_Физика.md", ""),
+                    "topic": topics_map.get("2026-09-30_Физика.md", "")
+                },
+                {"num": 4, "time": "14:00 – 15:30", "subject": "—", "room": "", "teacher": "", "has_notes": False}
+            ]
+        },
+        {
+            "date": "2026-10-01",
+            "date_display": "1 октября 2026 г. (Четверг)",
+            "short_day": "1 окт",
+            "weekday": "Чт",
+            "week": 5,
+            "lessons": [
+                {"num": 1, "time": "08:30 – 10:00", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {"num": 2, "time": "10:10 – 11:40", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {"num": 3, "time": "12:10 – 13:40", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {"num": 4, "time": "14:00 – 15:30", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {
+                    "num": 5, "time": "15:40 – 17:10", "subject": "Литература", "room": "каб. 203", "teacher": "Галавова Г.В.",
+                    "has_notes": True, "notes_file": "dist/notes/2026-10-01_Литература.md",
+                    "notes_md": notes_map.get("2026-10-01_Литература.md", ""),
+                    "topic": topics_map.get("2026-10-01_Литература.md", "")
+                },
+                {"num": 6, "time": "17:20 – 18:50", "subject": "—", "room": "", "teacher": "", "has_notes": False}
+            ]
+        },
+        {
+            "date": "2026-10-02",
+            "date_display": "2 октября 2026 г. (Пятница)",
+            "short_day": "2 окт",
+            "weekday": "Пт",
+            "week": 5,
+            "lessons": [
+                {"num": 1, "time": "08:30 – 10:00", "subject": "—", "room": "", "teacher": "", "has_notes": False},
+                {
+                    "num": 2, "time": "10:10 – 11:40", "subject": "География", "room": "каб. 302", "teacher": "Бахтина С.А.",
+                    "has_notes": True, "notes_file": "dist/notes/2026-10-02_География.md",
+                    "notes_md": notes_map.get("2026-10-02_География.md", ""),
+                    "topic": topics_map.get("2026-10-02_География.md", "")
+                },
+                {
+                    "num": 3, "time": "12:10 – 13:40", "subject": "География", "room": "каб. 302", "teacher": "Бахтина С.А.",
+                    "has_notes": True, "notes_file": "dist/notes/2026-10-02_География.md",
+                    "notes_md": notes_map.get("2026-10-02_География.md", ""),
+                    "topic": topics_map.get("2026-10-02_География.md", "")
+                },
+                {"num": 4, "time": "14:00 – 15:30", "subject": "—", "room": "", "teacher": "", "has_notes": False}
+            ]
+        },
+        {
+            "date": "2026-10-03",
+            "date_display": "3 октября 2026 г. (Суббота)",
+            "short_day": "3 окт",
+            "weekday": "Сб",
+            "week": 5,
             "lessons": [
                 {"num": 1, "time": "08:30 – 09:50", "subject": "—", "room": "", "teacher": "", "has_notes": False},
                 {"num": 2, "time": "10:00 – 11:20", "subject": "—", "room": "", "teacher": "", "has_notes": False},
@@ -1500,8 +1623,8 @@ html_template = """<!DOCTYPE html>
   <script>
     const APP = @@APP_DATA@@;
 
-    let currentWeekIndex = 3; // Default to Week 4
-    let currentDate = '2026-09-21';
+    let currentWeekIndex = 4; // Default to Week 5
+    let currentDate = '2026-09-28';
     let currentMode = 'schedule';
     let selectedSubject = 'Все предметы';
 
@@ -1661,6 +1784,7 @@ html_template = """<!DOCTYPE html>
     // ==========================================
     const SUBJECT_CATEGORIES = [
       'Все предметы',
+      'История',
       'Математика',
       'Физика',
       'Биология',
@@ -1687,6 +1811,7 @@ html_template = """<!DOCTYPE html>
 
     function normalizeSubject(name) {
       if (!name) return '';
+      if (name.includes('История')) return 'История';
       if (name.includes('Математика') || name.includes('Алгебра')) return 'Математика';
       if (name.includes('Физика')) return 'Физика';
       if (name.includes('Биология')) return 'Биология';
